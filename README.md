@@ -209,7 +209,7 @@ We have good experience using these editors:
 * How do I use `moduleId` with `module.id` in webpack?
   * Please use `__filename` if you must use `templateUrl` and `styleUrls` rather than webpack's module system
 * Why is my service not injecting parameter correctly?
-  * Please use `@Injectable()` for your service for typescript to corrrectly attach the metadata (this is a typescript beta problem)
+  * Please use `@Injectable()` for your service for typescript to correctly attach the metadata (this is a typescript beta problem)
 * Where do I write my tests? 
   * You can write your tests anywhere you like either next to your components or in the  `test/` folder
 * Is Angular 2 production ready yet?
@@ -234,7 +234,7 @@ We have good experience using these editors:
   * Client only, Minimalist, SystemJS, Gulp, TypeScript
 * [angular2-seed (Minko Gechev)](https://github.com/mgechev/angular2-seed)
   * Client only, SystemJS, Gulp, TypeScript, TSD, Versioned, Env Dev/Prod
-* [ng2-play (Roland Groza)](https://github.com/rolandjitsu/ng2-play)
+* [ng2-lab (Roland Groza)](https://github.com/rolandjitsu/ng2-lab)
   * Client only, ES6, TypeScript, Firebase, Gulp, Ci, TSD, TSLint
 * [ng2-jspm-seed (Rob Wormald)](https://github.com/robwormald/ng2-jspm-seed)
   * Client only, TypeScript, TSD, Gulp, JSPM, Minimalist
