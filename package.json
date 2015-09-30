@@ -1,7 +1,7 @@
 {
-  "name": "angular2-webpack-starter",
-  "version": "0.0.0",
-  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E), Karma, Protractor, Jasmine, TypeScript, and Webpack by AngularClass",
+  "name": "ng2-hunt",
+  "version": "0.0.1",
+  "description": "An angular 2 component to see hot products of Product Hunt",
   "main": "",
   "scripts": {
     "build": "npm run webpack --colors --display-error-details --display-cached",
@@ -27,14 +27,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angular-class/angular2-webpack-starter.git"
+    "url": "https://github.com/m00s/ng2-hunt.git"
   },
-  "author": "gdi2290 <github@gdi2290.com>",
+  "author": "m00s <massimilianosartoretto@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/angular-class/angular2-webpack-starter/issues"
+    "url": "https://github.com/m00s/ng2-hunt/issues"
   },
-  "homepage": "https://github.com/angular-class/angular2-webpack-starter",
+  "homepage": "https://github.com/m00s/ng2-hunt",
   "dependencies": {
     "angular2": "2.0.0-alpha.37",
     "reflect-metadata": "^0.1.1",

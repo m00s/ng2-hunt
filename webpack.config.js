@@ -132,7 +132,7 @@ module.exports = {
       { test: /\.css$/,   loader: 'raw' },
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'html' },
+      { test: /\.html$/,  loader: 'raw' },
 
       // Support for .ts files.
       { test: /\.ts$/,    loader: 'typescript-simple',
