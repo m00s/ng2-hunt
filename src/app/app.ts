@@ -14,6 +14,8 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 
+let appTemplate = require('./app.html');
+
 /*
  * Directive
  * XLarge is a simple directive to show how one of made
@@ -54,32 +56,7 @@ class XLarge {
     }
   `],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: `
-  <header>
-    <h1 class="title">Hello {{ title }}</h1>
-  </header>
-
-  <main>
-    Your Content Here
-    <div>
-
-      <input type="text" [value]="title" (input)="title = $event.target.value" autofocus>
-      <!--
-        Rather than wiring up two-way data-binding ourselves
-        we can use Angular's [(ng-model)] syntax
-        <input type="text" [(ng-model)]="title">
-      -->
-    </div>
-
-    <pre>this.title = {{ title | json }}</pre>
-    <pre>this.data = {{ data | json }}</pre>
-
-  </main>
-
-  <footer x-large>
-    WebPack Angular 2 Starter by <a href="https://twitter.com/AngularClass">@AngularClass</a>
-  </footer>
-  `
+  template:  appTemplate
 })
 export class App {
   // These are member type
