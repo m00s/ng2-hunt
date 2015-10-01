@@ -17,59 +17,25 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 let appTemplate = require('./app.html');
 
 /*
- * Directive
- * XLarge is a simple directive to show how one of made
- */
-@Directive({
-  selector: '[x-large]' // using [ ] means selecting attributes
-})
-class XLarge {
-  constructor(element: ElementRef) {
-    // simple DOM manipulation to set font size to x-large
-    // `nativeElement` is the direct reference to the DOM element
-    element.nativeElement.style.fontSize = 'x-large';
-  }
-}
-
-
-/*
  * App Component
  * Top Level Component
  */
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'app'
-  selector: 'app' // <app></app>
+  selector: 'app'
 })
 @View({
-  // We need to tell Angular's compiler which directives are in our template.
-  // Doing so will allow Angular to attach our behavior to an element
-  directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES, XLarge ],
-  // Our list of styles in our component. We may add more to compose many styles together
-  styles: [`
-    .title {
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    main {
-      padding: 1em;
-    }
-  `],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
+  directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES],
+  styles: [],
   template:  appTemplate
 })
 export class App {
-  // These are member type
   title: string;
-  data: Array<any> = []; // default data
+  data: Array<any> = [];
   constructor(public http: Http) {
     this.title = 'Angular 2';
   }
 
   onInit() {
-    // Our API
-    // npm run express-install
-    // npm run express
 
     const BASE_URL = 'http://localhost:3001';
     const TODO_API_URL = '/api/todos';
@@ -96,7 +62,7 @@ export class App {
   serverData(data) {
     console.log('data', data);
     this.data = data;
-  }//serverData
+  }
 
   errorMessage(err) {
     console.info(`${'\n'
@@ -105,16 +71,7 @@ export class App {
       } npm run express
     `);
     console.error(err);
-  }//errorMessage
+  }
 
 }
-
-
-
-/*
- * Please review the examples/ folder for more angular app examples
- * you can change the `entry` in webpack.config to quickly view the examples
- * For help or questions please contact us at @AngularClass on twitter
- * or via chat on gitter at https://gitter.im/angular-class/angular2-webpack-starter
- */
 
