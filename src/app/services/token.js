@@ -1,5 +1,4 @@
-export Class TokenService =
-  Class({
+Class Token {
     constructor: function(t) {
       this.token = t;
     },
@@ -9,4 +8,6 @@ export Class TokenService =
     set: function(t) {
       this.token = t;
     }
-  });
+  };
+
+export Token;
