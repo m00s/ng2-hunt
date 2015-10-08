@@ -34,7 +34,7 @@ Warning: Angular 2.0 is not production ready yet!
 [Is Angular 2 Ready Yet?](http://splintercode.github.io/is-angular-2-ready/)
 
 ### Quick start
-> Clone/Download the repo then edit `app.ts` inside [`/src/app/app.ts`](/src/app/app.ts)
+> Clone/Download the repo then edit `appHunter.ts` inside [`/src/app/appHunter.ts`](/src/app/appHunter.ts)
 
 ```bash
 # clone our repo
@@ -67,7 +67,7 @@ angular2-webpack-starter/
  ├──src/                                   * our source files that will be compiled to javascript
  │   │
  │   ├──app/                               * WebApp: folder
- │   │   ├──app.ts                         * App.ts: a simple version of our App component components
+ │   │   ├──appHunter.ts                         * App.ts: a simple version of our App component components
  │   │   └──bootstrap.ts                   * entry file for app
  │   │
  │   ├──bindings/                          * where common files used throughout our app
