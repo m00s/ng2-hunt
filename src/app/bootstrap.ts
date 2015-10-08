@@ -14,13 +14,13 @@ import {HTTP_BINDINGS} from 'angular2/http';
  * App Component
  * our top level component that holds all of our components
  */
-import {App} from './app';
+import {AppHunter} from './components/appHunter';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
  * our Services and Bindings into Angular's dependency injection
  */
-bootstrap(App, [
+bootstrap(AppHunter, [
   // These are dependencies of our App
   FORM_BINDINGS,
   ROUTER_BINDINGS,
