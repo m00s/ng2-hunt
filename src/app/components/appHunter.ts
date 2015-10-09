@@ -18,6 +18,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
  *
  */
 import {Hunter} from '../services/hunter';
+import {Session} from '../services/session';
 
 
 let appTemplate = require('./appHunter.html');
@@ -39,9 +40,10 @@ let appTemplate = require('./appHunter.html');
 export class AppHunter {
   title: string;
 
-  constructor(public hunter: Hunter) {
+  constructor(public hunter: Hunter, public session: Session) {
     this.title = 'Angular Hunter';
-    this.title = hunter.getData();
+
+    session.start();
   }
 }
 
