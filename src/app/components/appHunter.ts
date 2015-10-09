@@ -14,6 +14,12 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 
+/*
+ *
+ */
+import {Hunter} from '../services/hunter';
+
+
 let appTemplate = require('./appHunter.html');
 
 /*
@@ -32,10 +38,10 @@ let appTemplate = require('./appHunter.html');
 
 export class AppHunter {
   title: string;
-  data: Array<any> = [];
 
-  constructor(public http: Http) {
-    this.title = 'Angular 2';
+  constructor(public hunter: Hunter) {
+    this.title = 'Angular Hunter';
+    this.title = hunter.getData();
   }
 }
 

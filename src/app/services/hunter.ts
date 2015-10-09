@@ -1,4 +1,7 @@
-class HuntedList {
+import {Injectable} from 'angular2/di';
+import {Http, Headers} from 'angular2/http';
+
+@Injectable() export class Hunter {
   products: Array<any> = [];
   constructor(public http: Http) {}
 
@@ -12,7 +15,7 @@ class HuntedList {
     });
 
     this.http
-      .get(BASE_URL + TODO_API_URL, {
+      .get(BASE_URL + PRODUCTS_API_URL, {
         headers: JSON_HEADERS
       })
       .toRx()
@@ -21,17 +24,18 @@ class HuntedList {
           data => this.serverData(data),
           err  => this.errorMessage(err)
       );
+  }
 
+  getData() {
+    return 'Data';
   }
 
   serverData(data) {
     console.log('data', data);
-    this.data = data;
+    this.products = data;
   }
 
   errorMessage(err) {
     console.error(err);
   }
 }
-
-export HuntedList;

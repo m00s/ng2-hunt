@@ -11,6 +11,12 @@ import {ELEMENT_PROBE_BINDINGS} from 'angular2/debug';
 import {HTTP_BINDINGS} from 'angular2/http';
 
 /*
+ * Custom services
+ */
+import {Hunter} from './services/hunter';
+
+
+/*
  * App Component
  * our top level component that holds all of our components
  */
@@ -25,5 +31,6 @@ bootstrap(AppHunter, [
   FORM_BINDINGS,
   ROUTER_BINDINGS,
   HTTP_BINDINGS,
-  ELEMENT_PROBE_BINDINGS
+  ELEMENT_PROBE_BINDINGS,
+  Hunter
 ]);
