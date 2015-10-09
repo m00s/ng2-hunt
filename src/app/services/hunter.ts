@@ -1,5 +1,6 @@
 import {Injectable} from 'angular2/di';
 import {Http, Headers} from 'angular2/http';
+import {Session} from './session';
 
 @Injectable() export class Hunter {
   products: Array<any> = [];
