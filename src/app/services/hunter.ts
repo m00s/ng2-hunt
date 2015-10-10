@@ -1,24 +1,29 @@
 import {Injectable} from 'angular2/di';
 import {Http, Headers} from 'angular2/http';
 import {Session} from './session';
+import {Token} from './token';
+
 
 @Injectable() export class Hunter {
-  products: Array<any> = [];
-  constructor(public http: Http) {}
+  token: Token;
+  posts: Array<any> = [];
 
-  onInit() {
+  constructor(public http: Http, public _token: Token) {
+    this.token = _token;
+  }
 
-    const BASE_URL = 'http://localhost:3001';
-    const PRODUCTS_API_URL = '/api/products';
+  fetchPost() {
+
+    const BASE_URL = 'https://api.producthunt.com';
+    const POST_API_URL = '/api/products';
     const JSON_HEADERS = new Headers({
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token.get()
     });
 
     this.http
-      .get(BASE_URL + PRODUCTS_API_URL, {
-        headers: JSON_HEADERS
-      })
+      .get(BASE_URL + POST_API_URL, JSON_HEADERS)
       .toRx()
       .map(res => res.json())
       .subscribe(
@@ -27,13 +32,13 @@ import {Session} from './session';
       );
   }
 
-  getData() {
-    return 'Data';
+  getPost() {
+    return this.posts;
   }
 
   serverData(data) {
     console.log('data', data);
-    this.products = data;
+    this.posts = data;
   }
 
   errorMessage(err) {

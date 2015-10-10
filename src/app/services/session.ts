@@ -1,9 +1,14 @@
 import {Injectable} from 'angular2/di';
 import {Http, Headers} from 'angular2/http';
+import {Token} from './token';
 
 @Injectable() export class Session {
 
-  constructor(public http: Http) {}
+  token: Token;
+
+  constructor(public http: Http, public _token: Token) {
+    this.token = _token;
+  }
 
   start() {
     const BASE_URL = 'https://api.producthunt.com';
@@ -32,6 +37,7 @@ import {Http, Headers} from 'angular2/http';
 
   serverData(data) {
     console.log('data', data);
+    this.token.set(data.token);
   }
 
   errorMessage(err) {

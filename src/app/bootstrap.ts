@@ -15,6 +15,7 @@ import {HTTP_BINDINGS} from 'angular2/http';
  */
 import {Hunter} from './services/hunter';
 import {Session} from './services/session';
+import {Token} from './services/token';
 
 
 /*
@@ -34,5 +35,6 @@ bootstrap(AppHunter, [
   HTTP_BINDINGS,
   ELEMENT_PROBE_BINDINGS,
   Hunter,
-  Session
+  Session,
+  Token
 ]);

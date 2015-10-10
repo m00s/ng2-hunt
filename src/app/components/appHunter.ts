@@ -20,7 +20,6 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {Hunter} from '../services/hunter';
 import {Session} from '../services/session';
 
-
 let appTemplate = require('./appHunter.html');
 
 /*
