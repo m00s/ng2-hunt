@@ -23,7 +23,7 @@ import {Token} from './token';
     });
 
     this.http
-      .get(BASE_URL + POST_API_URL, JSON_HEADERS)
+      .get(BASE_URL + POST_API_URL, { headers: JSON_HEADERS })
       .toRx()
       .map(res => res.json())
       .subscribe(

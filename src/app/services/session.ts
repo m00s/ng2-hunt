@@ -26,7 +26,7 @@ import {Token} from './token';
     });
 
     this.http
-      .post(BASE_URL + AUTH_ROUTE, BODY, JSON_HEADERS)
+      .post(BASE_URL + AUTH_ROUTE, BODY, { headers: JSON_HEADERS })
       .toRx()
       .map(res => res.json())
       .subscribe(
