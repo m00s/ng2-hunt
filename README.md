@@ -1,6 +1,6 @@
 # ng2-hunt
 
-This is a sample project to hack with the [Product Hunt api](https://api.producthunt.com/v1/docs) and have fun with the (Angular 2 alpha)[https://www.npmjs.com/package/angular2].
+This is a sample project to hack with the [Product Hunt api](https://api.producthunt.com/v1/docs) and have fun with the [Angular 2 alpha](https://www.npmjs.com/package/angular2).
 
 Copyright © 2015, [Massimiliano Sartoretto](mailto:massimilianosartoretto@gmail.com)
 

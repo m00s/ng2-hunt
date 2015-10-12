@@ -1,6 +1,6 @@
 {
   "name": "ng2-hunt",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An angular 2 component to see hot products of Product Hunt",
   "main": "",
   "scripts": {
