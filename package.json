@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/m00s/ng2-hunt",
   "dependencies": {
-    "angular2": "2.0.0-alpha.37",
+    "angular2": "2.0.0-alpha.41",
     "reflect-metadata": "^0.1.1",
     "rx": "^2.5.3",
     "zone.js": "^0.5.4"
