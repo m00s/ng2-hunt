@@ -1,9 +1,10 @@
-import {Injectable} from 'angular2/src/core/di';
+import {Injectable} from 'angular2/angular2';
 
 
 @Injectable() export class Token {
-  constructor() {
-  }
+  token: string;
+
+  constructor() {}
 
   get() {
     return this.token;

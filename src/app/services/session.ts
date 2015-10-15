@@ -1,4 +1,4 @@
-import {Injectable} from 'angular2/src/core/di';
+import {Injectable} from 'angular2/angular2';
 import {Http, Headers} from 'angular2/http';
 import {Token} from './token';
 
@@ -27,7 +27,6 @@ import {Token} from './token';
 
     this.http
       .post(BASE_URL + AUTH_ROUTE, BODY, { headers: JSON_HEADERS })
-      .toRx()
       .map(res => res.json())
       .subscribe(
         data => this.serverData(data),

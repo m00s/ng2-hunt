@@ -68,16 +68,14 @@ module.exports = {
   entry: {
     'angular2': [
       // Angular 2 Deps
-      'rx',
+      '@reactivex/rxjs',
       'zone.js',
       'reflect-metadata',
       // to ensure these modules are grouped together in one file
       'angular2/angular2',
-      'angular2/src/core/forms',
+      'angular2/core',
       'angular2/router',
-      'angular2/http',
-      'angular2/src/core/debug',
-      'angular2/src/core/di'
+      'angular2/http'
     ],
     'app': [
       // App
@@ -113,7 +111,7 @@ module.exports = {
     root: __dirname,
     extensions: ['','.ts','.js','.json'],
     alias: {
-      // 'app': 'src/app',
+      'rx': '@reactivex/rxjs'
       // 'common': 'src/common',
       // 'bindings': 'src/bindings',
       // 'components': 'src/app/components'
@@ -230,7 +228,7 @@ function env(configEnv) {
 }
 
 function getBanner() {
-  return 'Angular2 Webpack Starter v'+ pkg.version +' by @gdi2990 from @AngularClass';
+  return 'ng2-hunt v'+ pkg.version +' by @___Sarto';
 }
 
 function root(args) {
