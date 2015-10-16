@@ -1,5 +1,5 @@
-import {Injectable} from 'angular2/di';
-import {Http, Headers} from 'angular2/http';
+import {Injectable} from 'angular2/angular2';
+import {Http, Headers, RequestOptionsArgs} from 'angular2/http';
 import {Token} from './token';
 
 @Injectable() export class Session {
@@ -15,8 +15,7 @@ import {Token} from './token';
     const AUTH_ROUTE = '/v1/oauth/token';
     const JSON_HEADERS = new Headers({
       'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Host': 'https://api.producthunt.comapplication/json'
+      'Content-Type': 'application/json'
     });
 
     const BODY = JSON.stringify({
@@ -27,7 +26,6 @@ import {Token} from './token';
 
     this.http
       .post(BASE_URL + AUTH_ROUTE, BODY, { headers: JSON_HEADERS })
-      .toRx()
       .map(res => res.json())
       .subscribe(
         data => this.serverData(data),
