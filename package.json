@@ -37,7 +37,7 @@
   "homepage": "https://github.com/m00s/ng2-hunt",
   "dependencies": {
     "@reactivex/rxjs": "5.0.0-alpha.4",
-    "angular2": "2.0.0-alpha.44",
+    "angular2": "2.0.0-alpha.45",
     "reflect-metadata": "0.1.2",
     "rimraf": "2.4.3",
     "ts-loader": "0.5.6",
