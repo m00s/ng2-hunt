@@ -1,11 +1,9 @@
 /// <reference path="../typings/_custom.d.ts" />
 
-// Angular 2
-import {bootstrap} from 'angular2/angular2';
 /*
  * Bindings provided by Angular
  */
-import {FORM_PROVIDERS, ELEMENT_PROBE_PROVIDERS} from 'angular2/angular2'
+import {bootstrap, FORM_PROVIDERS, ELEMENT_PROBE_PROVIDERS} from 'angular2/angular2';
 import {ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
