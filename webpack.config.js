@@ -179,7 +179,7 @@ function env(configEnv) {
 }
 
 function getBanner() {
-  return 'Angular2 Webpack Starter v'+ pkg.version +' by @AngularClass';
+  return 'Angular2 Webpack Starter v'+ pkg.version +' by @gdi2990 from @AngularClass';
 }
 
 function root(args) {
