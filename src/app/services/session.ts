@@ -13,15 +13,15 @@ import {Token} from './token';
   start() {
     const BASE_URL = 'https://api.producthunt.com';
     const AUTH_ROUTE = '/v1/oauth/token';
-    const JSON_HEADERS = new Headers({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    });
+    var JSON_HEADERS = new Headers();
+
+    JSON_HEADERS.append('Accept', 'application/json');
+    JSON_HEADERS.append('Content-Type', 'application/json');
 
     const BODY = JSON.stringify({
-      'client_id' : 'e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3',
-      'client_secret' : '02bcd19bc72549a4ea87370ed08e3f946c9e631ecea16b3c331c470ebefabe3a',
-      'grant_type' : 'client_credentials'
+      "client_id" : "e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3",
+      "client_secret" : "02bcd19bc72549a4ea87370ed08e3f946c9e631ecea16b3c331c470ebefabe3a",
+      "grant_type" : "client_credentials"
     });
 
     this.http
