@@ -4,6 +4,10 @@ import {Token} from './token';
 
 @Injectable() export class Session {
 
+  static BASE_URL : string = 'https://api.producthunt.com';
+  static TOKEN_ROUTE : string = '/v1/oauth/token';
+  static AUTHORIZATION_ROUTE : string = '/v1/oauth/authorize';
+
   token: Token;
 
   constructor(public http: Http, public _token: Token) {
@@ -36,11 +40,7 @@ import {Token} from './token';
    */
 
   UAFlow() {
-    let BASE_URL = 'https://api.producthunt.com';
-    let TOKEN_ROUTE = '/v1/oauth/token';
-    let AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
-
-    window.location.href = BASE_URL + AUTHORIZATION_ROUTE + '?client_id=e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3&redirect_uri=http%3A%2F%2Flocalhost.com%3A3000&response_type=code&scope=public+private';
+    window.location.href = Session.BASE_URL + Session.AUTHORIZATION_ROUTE + '?client_id=e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3&redirect_uri=http%3A%2F%2Flocalhost.com%3A3000&response_type=code&scope=public+private';
   }
 
   /*
@@ -62,7 +62,7 @@ import {Token} from './token';
     });
 
     this.http
-      .post(BASE_URL + TOKEN_ROUTE, BODY, { headers: JSON_HEADERS })
+      .post(Session.BASE_URL + Session.TOKEN_ROUTE, BODY, { headers: JSON_HEADERS })
       .map(res => res.json())
       .subscribe(
         data => this.serverData(data),
