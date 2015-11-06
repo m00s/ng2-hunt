@@ -10,9 +10,46 @@ import {Token} from './token';
     this.token = _token;
   }
 
-  start() {
-    const BASE_URL = 'https://api.producthunt.com';
-    const AUTH_ROUTE = '/v1/oauth/token';
+  start(isPublic) {
+
+    let urlToken = this.getURLParam('code');
+
+    if(urlToken) {
+      this.token.set(urlToken);
+      console.log('Saved token:',urlToken);
+    }
+    else {
+      console.log('Authorizing');
+      if(isPublic) {
+        this.CCFlow();
+      }
+      else {
+        this.UAFlow();
+      }
+    }
+  }
+
+  /*
+   *
+   * Start a user authentication oAuth authorization
+   *
+   */
+
+  UAFlow() {
+    let BASE_URL = 'https://api.producthunt.com';
+    let TOKEN_ROUTE = '/v1/oauth/token';
+    let AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
+
+    window.location.href = BASE_URL + AUTHORIZATION_ROUTE + '?client_id=e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3&redirect_uri=http%3A%2F%2Flocalhost.com%3A3000&response_type=code&scope=public+private';
+  }
+
+  /*
+  *
+  * Start a client credential oAuth authorization
+  *
+  */
+
+  CCFlow() {
     var JSON_HEADERS = new Headers();
 
     JSON_HEADERS.append('Accept', 'application/json');
@@ -25,12 +62,12 @@ import {Token} from './token';
     });
 
     this.http
-      .post(BASE_URL + AUTH_ROUTE, BODY, { headers: JSON_HEADERS })
+      .post(BASE_URL + TOKEN_ROUTE, BODY, { headers: JSON_HEADERS })
       .map(res => res.json())
       .subscribe(
         data => this.serverData(data),
         err  => this.errorMessage(err)
-      );
+    );
   }
 
   serverData(data) {
@@ -40,6 +77,10 @@ import {Token} from './token';
 
   errorMessage(err) {
     console.error(err);
+  }
+
+  private getURLParam(param) {
+    return decodeURIComponent((new RegExp('[?|&]' + param + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20')) || null
   }
 }
 
