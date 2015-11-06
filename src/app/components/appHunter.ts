@@ -42,7 +42,7 @@ export class AppHunter {
   constructor(public hunter: Hunter, public session: Session) {
     this.title = 'Angular Hunter';
 
-    session.start();
+    session.start(false);
   }
 }
 
