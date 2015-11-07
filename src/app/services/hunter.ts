@@ -12,7 +12,7 @@ import {Token} from './token';
     this.token = _token;
   }
 
-  fetchPost() {
+  fetch() {
 
     const BASE_URL = 'https://api.producthunt.com';
     const POST_API_URL = '/api/products';
