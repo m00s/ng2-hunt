@@ -31,10 +31,6 @@ import {Token} from './token';
       );
   }
 
-  getPost() {
-    return this.posts;
-  }
-
   serverData(data) {
     console.log('data', data);
     this.posts = data;
