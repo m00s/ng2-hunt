@@ -1,17 +1,10 @@
 <header>
-  <h1 class="title">Hello {{ title }}</h1>
+  <h1 class="title">ng2 Hunt</h1>
 </header>
 
 <main>
-  Your Content Here
-  <div>
 
-    <input type="text" [(ng-model)]="title" autofocus>
-
-  </div>
-
-  <pre>this.title = {{ title | json }}</pre>
-
+  <button (click)="authenticate()"> Login </button>
   <button (click)="fetchProducts()"> Load </button>
 
 </main>
