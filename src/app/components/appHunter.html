@@ -1,10 +1,12 @@
-<header>
-  <h1 class="title">ng2 Hunt</h1>
-</header>
+<div class="page">
+  <header>
+    <h1 class="title">NG-2 Hunt</h1>
+  </header>
 
-<main>
+  <div class="main-container">
 
-  <button (click)="authenticate()"> Login </button>
-  <button (click)="fetchProducts()"> Load </button>
+    <button class="md-button md-raised" (click)="authenticate()"> Authenticate </button>
+    <button class="md-button md-raised" [disabled]="isAuthenticated" (click)="fetchProducts()"> Load Product List </button>
 
-</main>
+  </div>
+</div>

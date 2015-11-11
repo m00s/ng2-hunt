@@ -27,24 +27,21 @@ let appTemplate = require('./appHunter.html');
  * Top Level Component
  */
 @Component({
-  selector: 'appHunter'
-})
-
-@View({
+  selector: 'appHunter',
   directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES],
   styles: [],
   template:  appTemplate
 })
 
 export class AppHunter {
-  title: string;
 
-  constructor(public hunter: Hunter, public session: Session) {
-    this.title = 'Angular Hunter';
-  }
+  isAuthenticated: boolean = false;
+
+  constructor(public hunter: Hunter, public session: Session) {}
 
   authenticate() {
-    this.session.start(false);
+    this.session.start(false)
+      .then(() => this.isAuthenticated = true)
   }
 
   fetchProducts() {
