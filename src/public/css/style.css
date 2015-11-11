@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: #222222;
+  color: white;
+}
+
+.page {
+  text-align: center;
+  margin: 20px;
+}
+
+.main-container {
+
+}
