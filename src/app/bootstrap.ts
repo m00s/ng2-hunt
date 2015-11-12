@@ -14,7 +14,6 @@ import {Hunter} from './services/hunter';
 import {Session} from './services/session';
 import {Token} from './services/token';
 
-
 /*
  * App Component
  * our top level component that holds all of our components
@@ -26,12 +25,12 @@ import {AppHunter} from './components/appHunter';
  * our Services and Bindings into Angular's dependency injection
  */
 bootstrap(AppHunter, [
-  // These are dependencies of our App
-  FORM_PROVIDERS,
-  ROUTER_PROVIDERS,
-  HTTP_PROVIDERS,
-  ELEMENT_PROBE_PROVIDERS,
-  Hunter,
-  Session,
-  Token
-]);
+    FORM_PROVIDERS,
+    ROUTER_PROVIDERS,
+    HTTP_PROVIDERS,
+    ELEMENT_PROBE_PROVIDERS,
+    Hunter,
+    Session,
+    Token
+  ])
+  .catch(err => console.error(err));
