@@ -15,7 +15,7 @@ import {Token} from './token';
   fetch() {
 
     const BASE_URL = 'https://api.producthunt.com';
-    const POST_API_URL = '/api/products';
+    const POST_API_URL = '/v1/posts';
     const JSON_HEADERS = new Headers({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
