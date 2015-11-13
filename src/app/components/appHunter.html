@@ -5,7 +5,11 @@
 
   <div class="main-container">
 
-    <button class="md-button md-raised" (click)="authenticate()"> Authenticate </button>
+    <h3> Authentication </h3>
+    <button class="md-button md-raised" (click)="authenticate(true)"> Client only</button>
+    <button class="md-button md-raised" (click)="authenticate(false)"> User </button>
+
+    <h3> Resources </h3>
     <button class="md-button md-raised" [disabled]="isAuthenticated" (click)="fetchProducts()"> Load Product List </button>
 
   </div>

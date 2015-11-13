@@ -39,9 +39,8 @@ export class AppHunter {
 
   constructor(public hunter: Hunter, public session: Session) {}
 
-  authenticate() {
-    this.session.start(false)
-      .then(() => this.isAuthenticated = true)
+  authenticate(isPublic) {
+    this.session.start(isPublic);
   }
 
   fetchProducts() {
