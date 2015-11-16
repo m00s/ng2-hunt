@@ -39,12 +39,24 @@ export class AppHunter {
 
   constructor(public hunter: Hunter, public session: Session) {}
 
+  onInit () {
+    const urlToken = this.getURLParam('code');
+
+    if(urlToken) {
+      this.session.start(urlToken);
+    }
+  }
+
   authenticate(isPublic) {
-    this.session.start(isPublic);
+    this.session.authorize(isPublic);
   }
 
   fetchProducts() {
     this.hunter.fetch();
+  }
+
+  private getURLParam(param) {
+    return decodeURIComponent((new RegExp('[?|&]' + param + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20')) || null;
   }
 }
 
