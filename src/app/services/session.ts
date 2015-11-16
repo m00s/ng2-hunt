@@ -14,22 +14,19 @@ import {Token} from './token';
     this.token = _token;
   }
 
-  start(isPublic) {
+  start(urlToken) {
+    this.token.set(urlToken);
+    console.info('Token saved:',urlToken);
+  }
 
-    let urlToken = this.getURLParam('code');
-
-    if(urlToken) {
-      this.token.set(urlToken);
-      console.log('Saved token:',urlToken);
+  authorize(isPublic) {
+    if(isPublic) {
+      console.log('Authorizing Client');
+      this.CCFlow();
     }
     else {
-      console.log('Authorizing');
-      if(isPublic) {
-        this.CCFlow();
-      }
-      else {
-        this.UAFlow();
-      }
+      console.log('Authorizing user');
+      this.UAFlow();
     }
   }
 
@@ -77,10 +74,6 @@ import {Token} from './token';
 
   errorMessage(err) {
     console.error(err);
-  }
-
-  private getURLParam(param) {
-    return decodeURIComponent((new RegExp('[?|&]' + param + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20')) || null
   }
 }
 
