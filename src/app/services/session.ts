@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/angular2';
-import {Http, Headers, RequestOptionsArgs} from 'angular2/http';
+import {Http, Headers, RequestOptionsArgs, Response} from 'angular2/http';
 import {Token} from './token';
 
 @Injectable() export class Session {
@@ -63,7 +63,7 @@ import {Token} from './token';
 
     this.http
       .post(Session.BASE_URL + Session.TOKEN_ROUTE, BODY, { headers: JSON_HEADERS })
-      .map(res => res.json())
+      .map((res:Response) => res.json())
       .subscribe(
         data => this.serverData(data),
         err  => this.errorMessage(err)
