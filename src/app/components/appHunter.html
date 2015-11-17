@@ -5,12 +5,23 @@
 
   <div class="main-container">
 
-    <h3> Authentication </h3>
-    <button class="md-button md-raised" (click)="authenticate(true)"> Client only</button>
-    <button class="md-button md-raised" (click)="authenticate(false)"> User </button>
+    <fieldset>
+      <h3> Authentication </h3>
+      <button class="md-button md-raised" (click)="authenticate(true)"> Client only</button>
+      <button class="md-button md-raised" (click)="authenticate(false)"> User </button>
+    </fieldset>
+    <fieldset>
+      <h3> Resources </h3>
+      <button class="md-button md-raised" [disabled]="isAuthenticated" (click)="fetchProducts()"> Load Product List </button>
+    </fieldset>
 
-    <h3> Resources </h3>
-    <button class="md-button md-raised" [disabled]="isAuthenticated" (click)="fetchProducts()"> Load Product List </button>
+    <br />
+
+    <div *ng-for="#p of posts | async" class="post">
+      <h3> {{ p.name }} </h3>
+      <p> {{ p.id}} </p>
+      <img [src]="p.thumbnail.image_url" class="thumbnail"></img>
+    </div>
 
   </div>
 </div>

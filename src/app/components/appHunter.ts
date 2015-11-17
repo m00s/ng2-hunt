@@ -36,6 +36,7 @@ let appTemplate = require('./appHunter.html');
 export class AppHunter {
 
   isAuthenticated: boolean = false;
+  posts: any;
 
   constructor(public hunter: Hunter, public session: Session) {}
 
@@ -52,7 +53,7 @@ export class AppHunter {
   }
 
   fetchProducts() {
-    this.hunter.fetch();
+    this.posts = this.hunter.fetch();
   }
 
   private getURLParam(param) {
