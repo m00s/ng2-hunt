@@ -15,7 +15,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 
 /*
- *
+ * App services
  */
 import {Hunter} from '../services/hunter';
 import {Session} from '../services/session';

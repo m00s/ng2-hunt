@@ -2,11 +2,11 @@ import {Injectable} from 'angular2/angular2';
 import {Http, Headers, RequestOptionsArgs, Response} from 'angular2/http';
 import {Token} from './token';
 
-@Injectable() export class Session {
+const API_HOST = 'https://api.producthunt.com';
+const TOKEN_ROUTE = '/v1/oauth/token';
+const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
 
-  static BASE_URL : string = 'https://api.producthunt.com';
-  static TOKEN_ROUTE : string = '/v1/oauth/token';
-  static AUTHORIZATION_ROUTE : string = '/v1/oauth/authorize';
+@Injectable() export class Session {
 
   token: Token;
 
@@ -37,7 +37,7 @@ import {Token} from './token';
    */
 
   UAFlow() {
-    window.location.href = Session.BASE_URL + Session.AUTHORIZATION_ROUTE + '?client_id=e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3&redirect_uri=http%3A%2F%2Flocalhost.com%3A3000&response_type=code&scope=public+private';
+    window.location.href = `${API_HOST}${AUTHORIZATION_ROUTE}?client_id=e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3&redirect_uri=http%3A%2F%2Flocalhost.com%3A3000&response_type=code&scope=public+private`;
   }
 
   /*
@@ -50,7 +50,7 @@ import {Token} from './token';
     var JSON_HEADERS = new Headers();
 
     JSON_HEADERS.append('Accept', 'application/json');
-    JSON_HEADERS.append('Content-Type', 'application/json');
+    //JSON_HEADERS.append('Content-Type', 'application/json');
 
     const BODY = JSON.stringify({
       "client_id" : "e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3",
@@ -59,7 +59,7 @@ import {Token} from './token';
     });
 
     this.http
-      .post(Session.BASE_URL + Session.TOKEN_ROUTE, BODY, { headers: JSON_HEADERS })
+      .post(`${API_HOST}${TOKEN_ROUTE}`, BODY, { headers: JSON_HEADERS })
       .map((res:Response) => res.json())
       .subscribe(
         data => this.serverData(data),
