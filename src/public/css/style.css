@@ -4,12 +4,11 @@
 }
 
 html, body {
-  background-color: #222222;
+  background-color: #4CAF50;
   color: white;
 }
 
 .page {
-  text-align: center;
   margin: 20px;
 }
 
@@ -17,12 +16,35 @@ html, body {
   margin: 20px 0;
 }
 
-.main-container h3 {
-  margin-top: 20px;
+.main-container fieldset {
+  max-width: 50%;
+  display: inline-block;
+  padding: 20px;
+  border-color: #C8E6C9;
+  margin-bottom: 30px;
+}
+
+.main-container fieldset h3 {
+  margin: 5px 8px;
+}
+
+.main-container .post {
+  width: 24%;
+  height: 250px;
+  float: left;
+  overflow: hidden;
+  border: 1px solid #C8E6C9;
+  text-align: center;
+  padding: 10px;
+}
+
+.main-container .post .thumbnail {
+  max-width: 50%;
+  max-height: 200px;
 }
 
 button {
-  background-color: yellowgreen !important;
-  color: #222222 !important;
+  background-color: #FF4081 !important;
+  color: #FFFFFF !important;
   padding: 0 20px !important;
 }
