@@ -41,11 +41,7 @@ export class AppHunter {
   constructor(public hunter: Hunter, public session: Session) {}
 
   onInit () {
-    const urlToken = this.getURLParam('code');
-
-    if(urlToken) {
-      this.session.start(urlToken);
-    }
+    this.isAuthenticated = this.session.isStarted;
   }
 
   authenticate(isPublic) {
@@ -54,10 +50,6 @@ export class AppHunter {
 
   fetchProducts() {
     this.posts = this.hunter.fetch();
-  }
-
-  private getURLParam(param) {
-    return decodeURIComponent((new RegExp('[?|&]' + param + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20')) || null;
   }
 }
 

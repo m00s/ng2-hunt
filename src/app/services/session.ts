@@ -8,15 +8,24 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
 
 @Injectable() export class Session {
 
-  token: Token;
+  public isStarted: boolean = false;
+  private token: Token;
 
   constructor(public http: Http, public _token: Token) {
     this.token = _token;
+
+    const t = this.token.get() || this.getURLParam('code');
+    if(t) {
+      this.start(t);
+    }
   }
 
-  start(urlToken) {
-    this.token.set(urlToken);
-    console.info('Token saved:',urlToken);
+  start(token) {
+    if(!this.isStarted) {
+      this.token.set(token);
+      this.isStarted = true;
+      console.info('Session started with token:',token);
+    }
   }
 
   authorize(isPublic) {
@@ -74,6 +83,10 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
 
   errorMessage(err) {
     console.error(err);
+  }
+
+  private getURLParam(param) {
+    return decodeURIComponent((new RegExp('[?|&]' + param + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20')) || null;
   }
 }
 
