@@ -48,3 +48,7 @@ button {
   color: #FFFFFF !important;
   padding: 0 20px !important;
 }
+
+button[disabled] {
+  opacity: 0.5;
+}
