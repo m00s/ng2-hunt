@@ -1,4 +1,4 @@
-/// <reference path="../../typings/_custom.d.ts" />
+/// <reference path="../../../typings/_custom.d.ts" />
 
 /*
  * Angular 2 decorators and services
@@ -20,20 +20,20 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {Hunter} from '../services/hunter';
 import {Session} from '../services/session';
 
-let appTemplate = require('./appHunter.html');
+let postsTemplate = require('./post.list.html');
 
 /*
  * App Component
  * Top Level Component
  */
 @Component({
-  selector: 'appHunter',
+  selector: 'postList',
   directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES],
   styles: [],
-  template:  appTemplate
+  template:  postsTemplate
 })
 
-export class AppHunter {
+export class PostList {
 
   isAuthenticated: boolean = false;
   posts: any;
