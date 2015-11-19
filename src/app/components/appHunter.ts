@@ -42,10 +42,18 @@ export class AppHunter {
 
   onInit () {
     this.isAuthenticated = this.session.isStarted;
+    if(this.isAuthenticated) {
+      this.fetchProducts();
+    }
   }
 
   authenticate(isPublic) {
     this.session.authorize(isPublic);
+  }
+
+  logout() {
+    this.session.end();
+    this.isAuthenticated = this.session.isStarted;
   }
 
   fetchProducts() {

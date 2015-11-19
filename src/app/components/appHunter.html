@@ -9,10 +9,11 @@
       <h3> Authentication </h3>
       <button class="md-button md-raised" (click)="authenticate(true)" disabled> Client only</button>
       <button class="md-button md-raised" [disabled]="isAuthenticated" (click)="authenticate(false)"> User </button>
+      <button class="md-button md-raised md-warn" [disabled]="!isAuthenticated" (click)="logout()"> Logout </button>
     </fieldset>
     <fieldset>
       <h3> Resources </h3>
-      <button class="md-button md-raised" [disabled]="!isAuthenticated" (click)="fetchProducts()"> Load Product List </button>
+      <button class="md-button md-raised" [disabled]="!isAuthenticated" (click)="fetchProducts()"> Refresh Product List </button>
     </fieldset>
 
     <br />

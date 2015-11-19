@@ -28,6 +28,14 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
     }
   }
 
+  end() {
+    if(this.isStarted) {
+      this.token.destroy();
+      this.isStarted = false;
+      console.info('Session closed');
+    }
+  }
+
   authorize(isPublic) {
     if(isPublic) {
       console.log('Authorizing Client');

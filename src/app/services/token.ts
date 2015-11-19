@@ -14,8 +14,19 @@ import {Injectable} from 'angular2/angular2';
 
   set(t) {
     this.token = t;
-    if(typeof(Storage) !== "undefined") {
+    if(this.isLocalStorageSupported()) {
       localStorage.setItem('token', t);
     }
+  }
+
+  destroy() {
+    this.set = null;
+    if(this.isLocalStorageSupported()) {
+      localStorage.clear();
+    }
+  }
+
+  private isLocalStorageSupported() {
+    return typeof(Storage) !== "undefined";
   }
 }
