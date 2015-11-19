@@ -9,12 +9,12 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
 @Injectable() export class Session {
 
   public isStarted: boolean = false;
-  private token: Token;
+  private _token: Token;
 
-  constructor(public http: Http, public _token: Token) {
-    this.token = _token;
+  constructor(public http: Http, public token: Token) {
+    this._token = token;
 
-    const t = this.token.get() || this.getURLParam('code');
+    const t = this._token.get() || this.getURLParam('code');
     if(t) {
       this.start(t);
     }
@@ -22,7 +22,7 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
 
   start(token) {
     if(!this.isStarted) {
-      this.token.set(token);
+      this._token.set(token);
       this.isStarted = true;
       console.info('Session started with token:',token);
     }
@@ -30,7 +30,7 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
 
   end() {
     if(this.isStarted) {
-      this.token.destroy();
+      this._token.destroy();
       this.isStarted = false;
       console.info('Session closed');
     }
@@ -86,7 +86,7 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
 
   serverData(data) {
     console.log('data', data);
-    this.token.set(data.token);
+    this._token.set(data.token);
   }
 
   errorMessage(err) {
@@ -97,4 +97,3 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
     return decodeURIComponent((new RegExp('[?|&]' + param + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20')) || null;
   }
 }
-
