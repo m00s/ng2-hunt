@@ -1,5 +1,5 @@
-<navbar>
+<div class="navbar">
   <button class="md-button md-raised" (click)="authenticate(true)" disabled> Client only</button>
   <button class="md-button md-raised" [disabled]="isAuthenticated" (click)="authenticate(false)"> User </button>
   <button class="md-button md-raised md-warn" [disabled]="!isAuthenticated" (click)="logout()"> Logout </button>
-</navbar>
+</div>
