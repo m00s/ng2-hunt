@@ -20,7 +20,7 @@ import {Token} from './services/token';
 @Component({
   selector: 'ng-hunt',
   directives: [ROUTER_DIRECTIVES],
-  template: `<router-outlet></router-outlet>`,
+  template: `<a [router-link]="['posts']">Posts</a><router-outlet></router-outlet>`,
   providers: [
     FORM_PROVIDERS,
     ROUTER_PROVIDERS,
