@@ -30,7 +30,7 @@ let postsTemplate = require('./post.list.html');
   selector: 'postList',
   directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES],
   styles: [],
-  template:  postsTemplate
+  template:  postsTemplate,
 })
 
 export class PostList {

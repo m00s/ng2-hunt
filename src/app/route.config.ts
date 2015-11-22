@@ -6,15 +6,15 @@ import {RouteDefinition} from 'angular2/router';
 export const Routes = {
   posts: {
     path: '/',
-    as: 'Posts',
+    as: 'PostList',
     component: PostList,
-    link: ['/posts', '/']
+    link: ['/PostList']
   },
   detail: {
     path: '/post/:id',
-    as: 'Detail',
+    as: 'SinglePost',
     component: SinglePost,
-    link: ['/detail']
+    link: ['/SinglePost']
   }
 };
 

@@ -20,7 +20,7 @@ import {Token} from './services/token';
 @Component({
   selector: 'ng-hunt',
   directives: [ROUTER_DIRECTIVES],
-  template: `<a [router-link]="['posts']">Posts</a><router-outlet></router-outlet>`,
+  template: `<router-outlet></router-outlet>`,
   providers: [
     FORM_PROVIDERS,
     ROUTER_PROVIDERS,
@@ -33,6 +33,7 @@ import {Token} from './services/token';
     provide(LocationStrategy, {useClass: HashLocationStrategy})
   ]
 })
+
 @RouteConfig(APP_ROUTES)
 export class MainComponent {
   routes = Routes;
