@@ -20,25 +20,27 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {Hunter} from '../../services/hunter';
 import {Session} from '../../services/session';
 
-let postsTemplate = require('./post.list.html');
+let postsTemplate = require('./dashboard.html');
 
 /*
  * App Component
  * Top Level Component
  */
 @Component({
-  selector: 'postList',
+  selector: 'dashboard',
   directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES],
   styles: [],
   template:  postsTemplate,
 })
 
-export class PostList {
+export class Dashboard {
 
   isAuthenticated: boolean = false;
   posts: any;
 
-  constructor(public hunter: Hunter, public session: Session) {}
+  constructor(public hunter: Hunter, public session: Session, private router: Router) {
+
+  }
 
   onInit () {
     this.isAuthenticated = this.session.isStarted;
@@ -58,6 +60,10 @@ export class PostList {
 
   fetchProducts() {
     this.posts = this.hunter.fetch();
+  }
+
+  gotoDetail(postId) {
+    this.router.navigate(['/Post', {id: postId}]);
   }
 }
 

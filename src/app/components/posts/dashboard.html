@@ -18,6 +18,7 @@
       <h3> {{ p.name }} </h3>
       <p> {{ p.id}} </p>
       <img [src]="p.thumbnail.image_url" class="thumbnail"></img>
+      <button (click)="gotoDetail(p.id)">Read more about this post</button>
     </div>
 
   </div>

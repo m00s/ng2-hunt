@@ -1,20 +1,24 @@
 /// <reference path="../typings/_custom.d.ts" />
-import {PostList} from './components/posts/post.list.ts';
-import {SinglePost} from './components/posts/detail/single.post';
+import {Dashboard} from './components/posts/dashboard.ts';
+import {Post} from './components/posts/detail/post.ts';
 import {RouteDefinition} from 'angular2/router';
 
 export const Routes = {
   posts: {
     path: '/',
-    as: 'PostList',
-    component: PostList,
-    link: ['/PostList']
+    redirectTo: '/dashboard',
+  },
+  dashboard: {
+    path: '/dashboard',
+    as: 'Dashboard',
+    component: Dashboard,
+    link: ['/dashboard']
   },
   detail: {
     path: '/post/:id',
-    as: 'SinglePost',
-    component: SinglePost,
-    link: ['/SinglePost']
+    as: 'Post',
+    component: Post,
+    link: ['/post']
   }
 };
 
