@@ -1,4 +1,4 @@
-/// <reference path="../../typings/_custom.d.ts" />
+/// <reference path="../../../typings/_custom.d.ts" />
 
 /*
  * Angular 2 decorators and services
@@ -17,28 +17,30 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 /*
  * App services
  */
-import {Hunter} from '../services/hunter';
-import {Session} from '../services/session';
+import {Hunter} from '../../services/hunter';
+import {Session} from '../../services/session';
 
-let appTemplate = require('./appHunter.html');
+let postsTemplate = require('./dashboard.html');
 
 /*
  * App Component
  * Top Level Component
  */
 @Component({
-  selector: 'appHunter',
+  selector: 'dashboard',
   directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES],
   styles: [],
-  template:  appTemplate
+  template:  postsTemplate,
 })
 
-export class AppHunter {
+export class Dashboard {
 
   isAuthenticated: boolean = false;
   posts: any;
 
-  constructor(public hunter: Hunter, public session: Session) {}
+  constructor(public hunter: Hunter, public session: Session, private router: Router) {
+
+  }
 
   onInit () {
     this.isAuthenticated = this.session.isStarted;
@@ -58,6 +60,10 @@ export class AppHunter {
 
   fetchProducts() {
     this.posts = this.hunter.fetch();
+  }
+
+  gotoDetail(postId) {
+    this.router.navigate(['/Post', {id: postId}]);
   }
 }
 

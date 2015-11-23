@@ -3,14 +3,10 @@
     <h1 class="title">NG-2 Hunt</h1>
   </header>
 
+  <navbar></navbar>
+
   <div class="main-container">
 
-    <fieldset>
-      <h3> Authentication </h3>
-      <button class="md-button md-raised" (click)="authenticate(true)" disabled> Client only</button>
-      <button class="md-button md-raised" [disabled]="isAuthenticated" (click)="authenticate(false)"> User </button>
-      <button class="md-button md-raised md-warn" [disabled]="!isAuthenticated" (click)="logout()"> Logout </button>
-    </fieldset>
     <fieldset>
       <h3> Resources </h3>
       <button class="md-button md-raised" [disabled]="!isAuthenticated" (click)="fetchProducts()"> Refresh Product List </button>
@@ -22,6 +18,7 @@
       <h3> {{ p.name }} </h3>
       <p> {{ p.id}} </p>
       <img [src]="p.thumbnail.image_url" class="thumbnail"></img>
+      <button (click)="gotoDetail(p.id)">Read more about this post</button>
     </div>
 
   </div>
