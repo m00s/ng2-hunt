@@ -23,4 +23,17 @@ const POSTS_ROUTE = '/v1/posts';
       .map((res: Response) => res.json())
       .map(res => res['posts']);
   }
+
+  getPost(id) {
+    console.log('getPost');
+
+    const JSON_HEADERS = new Headers({
+      'Authorization': 'Bearer ' + this.token.get()
+    });
+
+    return this.http
+      .get(`${API_HOST}${POSTS_ROUTE}/${id}`, { headers: JSON_HEADERS })
+      .map((res: Response) => res.json())
+      .map(res => res['post']);
+  }
 }

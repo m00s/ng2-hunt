@@ -1,1 +1,11 @@
 <h2> Detail post view </h2>
+
+<section *ng-if=post>
+  <h3>{{ post.name }}</h3>
+
+  <figure>
+    <figcaption> {{ post.tagline }} </figcaption>
+    <img src="{{ post.screenshot_url['850px'] }}">
+  </figure>
+
+</section>
