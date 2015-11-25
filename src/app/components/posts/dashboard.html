@@ -15,10 +15,15 @@
     <br />
 
     <div *ng-for="#p of posts | async" class="post">
-      <h3> {{ p.name }} </h3>
-      <p> {{ p.id}} </p>
-      <img [src]="p.thumbnail.image_url" class="thumbnail"></img>
-      <button (click)="gotoDetail(p.id)">Read more about this post</button>
+      <div class="tile-header">
+        <h3> {{ p.name }} </h3>
+      </div>
+      <div class="tile-body">
+        <img [src]="p.thumbnail.image_url" class="thumbnail"></img>
+      </div>
+      <div class="tile-footer">
+        <button class="btn-link" (click)="gotoDetail(p.id)">Read more about this post</button>
+      </div>
     </div>
 
   </div>

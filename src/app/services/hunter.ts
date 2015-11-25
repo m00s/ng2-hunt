@@ -25,8 +25,6 @@ const POSTS_ROUTE = '/v1/posts';
   }
 
   getPost(id) {
-    console.log('getPost');
-
     const JSON_HEADERS = new Headers({
       'Authorization': 'Bearer ' + this.token.get()
     });
