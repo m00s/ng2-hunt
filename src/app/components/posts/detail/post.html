@@ -1,4 +1,8 @@
 <div class="page">
+  <div class="navigation">
+    <button class="btn-link router-link" [router-link]="['/Dashboard']"> Back to Dashboard </button>
+  </div>
+
   <section *ng-if=post>
     <h1>{{ post.name }}</h1>
 

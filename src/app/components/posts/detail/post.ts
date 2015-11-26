@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/_custom.d.ts" />
 
 import {Component} from 'angular2/angular2';
-import {RouteParams} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 import {Routes} from '../../../route.config';
 
 import {Hunter} from '../../../services/hunter';
@@ -15,14 +15,16 @@ let postTemplate = require('./post.html');
 @Component({
   selector: 'post',
   styles: [],
-  template: postTemplate
+  template: postTemplate,
+  directives: [ROUTER_DIRECTIVES]
 })
 
 export class Post {
-
   post: any;
+  routes = Routes;
 
-  constructor(private _routeParams: RouteParams, private _hunter: Hunter) {}
+  constructor(private _routeParams: RouteParams, private _hunter: Hunter) {
+  }
 
   onInit () {
     this._hunter

@@ -4,9 +4,11 @@ import {Post} from './components/posts/detail/post.ts';
 import {RouteDefinition} from 'angular2/router';
 
 export const Routes = {
-  posts: {
+  home: {
     path: '/',
+    as: 'Home',
     redirectTo: '/dashboard',
+    link: ['/home']
   },
   dashboard: {
     path: '/dashboard',
