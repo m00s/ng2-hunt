@@ -19,6 +19,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
  */
 import {Hunter} from '../../services/hunter';
 import {Session} from '../../services/session';
+import {Navbar} from '../navbar/navbar';
 
 let postsTemplate = require('./dashboard.html');
 
@@ -28,7 +29,7 @@ let postsTemplate = require('./dashboard.html');
  */
 @Component({
   selector: 'dashboard',
-  directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES],
+  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES, Navbar],
   styles: [],
   template:  postsTemplate,
 })
