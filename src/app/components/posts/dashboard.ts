@@ -39,9 +39,7 @@ export class Dashboard {
   isAuthenticated: boolean = false;
   posts: any;
 
-  constructor(public hunter: Hunter, public session: Session, private router: Router) {
-
-  }
+  constructor(public hunter: Hunter, public session: Session, private router: Router) {}
 
   onInit () {
     this.isAuthenticated = this.session.isStarted;
@@ -50,16 +48,11 @@ export class Dashboard {
     }
   }
 
-  authenticate(isPublic) {
-    this.session.authorize(isPublic);
-  }
-
-  logout() {
-    this.session.end();
-    this.isAuthenticated = this.session.isStarted;
-  }
-
   fetchProducts() {
+    this.posts = this.hunter.fetch();
+  }
+
+  onRefresh() {
     this.posts = this.hunter.fetch();
   }
 

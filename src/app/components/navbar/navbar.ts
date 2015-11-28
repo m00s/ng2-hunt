@@ -9,7 +9,7 @@ import {Http, Headers} from 'angular2/http';
 /*
  * Angular Directives
  */
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, Output, EventEmitter} from 'angular2/angular2';
 
 
 /*
@@ -31,6 +31,7 @@ let navTemplate = require('./navbar.html');
 })
 
 export class Navbar {
+  @Output() refresh = new EventEmitter();
 
   isAuthenticated: boolean = false;
 
@@ -47,6 +48,10 @@ export class Navbar {
   logout() {
     this.session.end();
     this.isAuthenticated = this.session.isStarted;
+  }
+
+  fireRefresh() {
+    this.refresh.next(null);
   }
 }
 

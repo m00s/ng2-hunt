@@ -1,18 +1,10 @@
 <div class="page">
   <header>
-    <h1 class="title">NG-2 Hunt</h1>
+    <h1 class="title"> (ng2) Product Hunt </h1>
   </header>
 
-  <navbar></navbar>
-
   <div class="main-container">
-
-    <fieldset>
-      <h3> Resources </h3>
-      <button class="md-button md-raised" [disabled]="!isAuthenticated" (click)="fetchProducts()"> Refresh Product List </button>
-    </fieldset>
-
-    <br />
+    <navbar (refresh)="onRefresh()"></navbar>
 
     <div *ng-for="#p of posts | async" class="post">
       <div class="tile-header">
