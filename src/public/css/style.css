@@ -24,15 +24,12 @@ html, body {
   margin: 20px 0;
 }
 
-.main-container fieldset {
-  max-width: 50%;
-  display: inline-block;
-  padding: 20px;
-  border: 2px solid #C8E6C9;
+.main-container nav {
+  display: block;
   margin-bottom: 30px;
 }
 
-.main-container fieldset h3 {
+.main-container nav h3 {
   margin: 5px 8px;
 }
 
@@ -65,11 +62,13 @@ html, body {
 .tile-footer:hover {
   background-color: white !important;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .tile-footer:hover button {
   color: #FF4081 !important;
   border-bottom: 2px solid #FF4081 !important;
+  transition: all 0.3s ease;
 }
 
 .tile-body {
@@ -96,8 +95,17 @@ html, body {
 
 button {
   background-color: #FF4081 !important;
-  color: #FFFFFF !important;
+  color: white !important;
   padding: 0 20px !important;
+}
+
+button.md-button {
+  border: 2px solid #FF4081;
+}
+
+button.md-button:not([disabled]):hover {
+  border: 2px solid white;
+  transition: border 0.3s ease;
 }
 
 button[disabled] {
