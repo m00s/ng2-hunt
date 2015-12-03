@@ -20,6 +20,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {Hunter} from '../../services/hunter';
 import {Session} from '../../services/session';
 import {Navbar} from '../navbar/navbar';
+import {Categories} from '../categories/categories';
 
 let postsTemplate = require('./dashboard.html');
 
@@ -44,16 +45,12 @@ export class Dashboard {
   onInit () {
     this.isAuthenticated = this.session.isStarted;
     if(this.isAuthenticated) {
-      this.fetchProducts();
+      this.fetchPosts();
     }
   }
 
-  fetchProducts() {
-    this.posts = this.hunter.fetch();
-  }
-
-  onRefresh() {
-    this.posts = this.hunter.fetch();
+  fetchPosts() {
+    this.posts = this.hunter.getPosts();
   }
 
   gotoDetail(postId) {

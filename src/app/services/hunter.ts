@@ -5,6 +5,7 @@ import {Token} from './token';
 
 const API_HOST = 'https://api.producthunt.com';
 const POSTS_ROUTE = '/v1/posts';
+const CATEGORIES_ROUTE = '/v1/categories';
 
 @Injectable() export class Hunter {
   token: Token;
@@ -13,7 +14,7 @@ const POSTS_ROUTE = '/v1/posts';
     this.token = _token;
   }
 
-  fetch() {
+  getPosts() {
     const JSON_HEADERS = new Headers({
       'Authorization': 'Bearer ' + this.token.get()
     });
@@ -22,6 +23,17 @@ const POSTS_ROUTE = '/v1/posts';
       .get(`${API_HOST}${POSTS_ROUTE}`, { headers: JSON_HEADERS })
       .map((res: Response) => res.json())
       .map(res => res['posts']);
+  }
+
+  getCategories() {
+    const JSON_HEADERS = new Headers({
+      'Authorization': 'Bearer ' + this.token.get()
+    });
+
+    return this.http
+      .get(`${API_HOST}${CATEGORIES_ROUTE}`, { headers: JSON_HEADERS })
+      .map((res: Response) => res.json())
+      .map(res => res['categories']);
   }
 
   getPost(id) {

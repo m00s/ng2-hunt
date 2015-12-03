@@ -6,6 +6,7 @@
 import {Directive, Component, View, ElementRef, CORE_DIRECTIVES, FORM_DIRECTIVES, Output, EventEmitter} from 'angular2/angular2';
 
 import {Session} from '../../services/session';
+import {Hunter} from '../../services/hunter';
 
 let catTemplate = require('./categories.html');
 
@@ -20,23 +21,23 @@ let catTemplate = require('./categories.html');
   template:  catTemplate
 })
 
-export class Navbar {
-  @Output() refresh = new EventEmitter();
-
+export class Categories {
   isAuthenticated: boolean = false;
+  categories: any;
 
-  constructor(public session: Session) {}
+  constructor(private _session: Session, private _hunter: Hunter) {}
 
   onInit () {
-    this.isAuthenticated = this.session.isStarted;
-  }
-
-  fireRefresh() {
-    this.refresh.next(null);
+    this.isAuthenticated = this._session.isStarted;
   }
 
   onAuthenticate() {
-    this.isAuthenticated = this.session.isStarted;
+    this.isAuthenticated = this._session.isStarted;
+    //this.fetchCategories();
+  }
+
+  fetchCategories() {
+    this.categories = this._hunter.getCategories();
   }
 }
 

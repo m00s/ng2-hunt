@@ -4,7 +4,9 @@
   </header>
 
   <div class="main-container">
-    <navbar (refresh)="onRefresh()"></navbar>
+    <navbar (refresh)="fetchPosts()"></navbar>
+
+    <categories></categories>
 
     <div *ng-for="#p of posts | async" class="post">
       <div class="tile-header">
