@@ -37,7 +37,15 @@ export class Categories {
   }
 
   fetchCategories() {
-    this.categories = this._hunter.getCategories();
+    this._hunter
+      .getCategories()
+      .subscribe(
+        (list) => {
+          this.categories = list;
+          console.log('Fetched:',this.categories[0]);
+        },
+        (err) => console.log('Error:',err)
+      );
   }
 }
 
