@@ -125,3 +125,24 @@ div.navbar {
   height: 100px;
   border: 2px solid white;
 }
+
+div.toolbar {
+  width: 100%;
+  min-height: 75px;
+}
+
+div.toolbar ul.list-inline {
+  list-style: none;
+  height: 75px;
+}
+
+div.toolbar ul.list-inline li.category {
+  display: inline;
+  min-width: 200px;
+  border: 2px solid red;
+  height: 75px;
+}
+
+div.toolbar ul.list-inline li.category span {
+  line-height: 75px;
+}

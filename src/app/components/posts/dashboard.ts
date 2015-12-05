@@ -53,6 +53,10 @@ export class Dashboard {
     this.posts = this.hunter.getPosts();
   }
 
+  filterPosts(event, c) {
+    this.posts = this.hunter.getPosts(event.category.slug);
+  }
+
   gotoDetail(postId) {
     this.router.navigate(['/Post', {id: postId}]);
   }

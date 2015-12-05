@@ -3,9 +3,16 @@
 /*
  * Angular Directives
  */
-import {Directive, Component, View, ElementRef, CORE_DIRECTIVES, FORM_DIRECTIVES, Output, EventEmitter} from 'angular2/angular2';
+import {
+  Directive,
+  Component,
+  CORE_DIRECTIVES,
+  FORM_DIRECTIVES,
+  Input,
+  Output,
+  EventEmitter
+  } from 'angular2/angular2';
 
-import {Session} from '../../services/session';
 import {Hunter} from '../../services/hunter';
 
 let catTemplate = require('./categories.html');
@@ -22,30 +29,24 @@ let catTemplate = require('./categories.html');
 })
 
 export class Categories {
-  isAuthenticated: boolean = false;
   categories: any;
+  @Input() isAuthenticated: boolean;
+  @Output() filterBy = new EventEmitter();
 
-  constructor(private _session: Session, private _hunter: Hunter) {}
+  constructor(private _hunter: Hunter) {}
 
   onInit () {
-    this.isAuthenticated = this._session.isStarted;
-  }
-
-  onAuthenticate() {
-    this.isAuthenticated = this._session.isStarted;
-    //this.fetchCategories();
+    if(this.isAuthenticated){
+      this.fetchCategories();
+    }
   }
 
   fetchCategories() {
-    this._hunter
-      .getCategories()
-      .subscribe(
-        (list) => {
-          this.categories = list;
-          console.log('Fetched:',this.categories[0]);
-        },
-        (err) => console.log('Error:',err)
-      );
+    this.categories = this._hunter.getCategories();
+  }
+
+  fireFilter(event, c) {
+    this.filterBy.next({category: c});
   }
 }
 

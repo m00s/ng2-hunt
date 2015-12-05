@@ -1,8 +1,7 @@
-<div>
-  <button (click)="fetchCategories()">Categorize</button>
-  <ul>
-    <li *ng-for="#c of categories | async" class="categories">
-      {{ c.name }} "ciao"
+<div class="toolbar">
+  <ul class="list-inline">
+    <li *ng-for="#c of categories | async" class="category">
+      <span (click)="fireFilter($event, c)">{{ c.name }}</span>
     </li>
   </ul>
 </div>
