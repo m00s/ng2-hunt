@@ -6,43 +6,39 @@ import {Token} from './token';
 const API_HOST = 'https://api.producthunt.com';
 const POSTS_ROUTE = '/v1/posts';
 const CATEGORIES_ROUTE = '/v1/categories';
+const COLLECTIONS_ROUTE = '/v1/collections';
 
 @Injectable() export class Hunter {
-  token: Token;
+  _token: Token;
 
-  constructor(public http: Http, public _token: Token) {
-    this.token = _token;
+  constructor(public http: Http, private token: Token) {
+    this._token = token;
   }
 
-  getPosts() {
-    const JSON_HEADERS = new Headers({
-      'Authorization': 'Bearer ' + this.token.get()
+  buildHeaders() {
+    return new Headers({
+      'Authorization': 'Bearer ' + this._token.get()
     });
+  }
 
+  getPosts(category?) {
+    var param = category ? `/all?search[category]=${category}` : '';
     return this.http
-      .get(`${API_HOST}${POSTS_ROUTE}`, { headers: JSON_HEADERS })
+      .get(`${API_HOST}${POSTS_ROUTE}${param}`, { headers: this.buildHeaders() })
       .map((res: Response) => res.json())
       .map(res => res['posts']);
   }
 
   getCategories() {
-    const JSON_HEADERS = new Headers({
-      'Authorization': 'Bearer ' + this.token.get()
-    });
-
     return this.http
-      .get(`${API_HOST}${CATEGORIES_ROUTE}`, { headers: JSON_HEADERS })
+      .get(`${API_HOST}${CATEGORIES_ROUTE}`, { headers: this.buildHeaders() })
       .map((res: Response) => res.json())
       .map(res => res['categories']);
   }
 
   getPost(id) {
-    const JSON_HEADERS = new Headers({
-      'Authorization': 'Bearer ' + this.token.get()
-    });
-
     return this.http
-      .get(`${API_HOST}${POSTS_ROUTE}/${id}`, { headers: JSON_HEADERS })
+      .get(`${API_HOST}${POSTS_ROUTE}/${id}`, { headers: this.buildHeaders() })
       .map((res: Response) => res.json())
       .map(res => res['post']);
   }
