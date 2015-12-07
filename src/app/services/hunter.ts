@@ -6,7 +6,6 @@ import {Token} from './token';
 const API_HOST = 'https://api.producthunt.com';
 const POSTS_ROUTE = '/v1/posts';
 const CATEGORIES_ROUTE = '/v1/categories';
-const COLLECTIONS_ROUTE = '/v1/collections';
 
 @Injectable() export class Hunter {
   _token: Token;
