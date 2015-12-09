@@ -1,5 +1,3 @@
-// @AngularClass
-
 module.exports = function(config) {
   var _config = {
 
@@ -14,9 +12,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: './src/public/lib/es6-shim.js', watched: false },
-      // { pattern: 'test/**/*.spec.ts', watched: false }
-      { pattern: 'spec.bundle.js', watched: false }
+      // we are building the test environment in ./spec-bundle.js
+      { pattern: 'spec-bundle.js', watched: false }
     ],
 
 
@@ -28,27 +25,29 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'spec.bundle.js': ['webpack', 'sourcemap']
+      'spec-bundle.js': ['webpack', 'sourcemap']
       // 'test/**/*.spec.ts': ['webpack', 'sourcemap']
     },
 
     webpack: {
 
       resolve: {
+        cache: false,
         root: __dirname,
-        extensions: ['','.ts','.js','.json'],
+        extensions: ['','.ts','.js','.json', '.css', '.html'],
         alias: {
           'app': 'src/app',
-          'common': 'src/common',
+          'common': 'src/common'
         }
       },
       devtool: 'inline-source-map',
       module: {
         loaders: [
-          { test: /\.ts$/,   loader: 'typescript-simple?ignoreWarnings[]=2345', exclude: [
-              /web_modules/,
-              /node_modules/
-            ]
+          {
+            test: /\.tsx?$/,
+            loader: 'ts',
+            exclude: [/node_modules/],
+            query: { 'ignoreDiagnostics': [ 2403 ]  } // 2403 -> Subsequent variable declarations},
           },
           { test: /\.json$/, loader: 'json' },
           { test: /\.html$/, loader: 'raw' },
@@ -56,7 +55,12 @@ module.exports = function(config) {
         ]
       },
       stats: { colors: true, reasons: true },
-      debug: false
+      debug: false,
+      noParse: [
+        /zone\.js\/dist\/zone-microtask\.js/,
+        /zone\.js\/dist\/long-stack-trace-zone\.js/,
+        /zone\.js\/dist\/jasmine-patch\.js/
+      ]
     },
 
     webpackServer: {
