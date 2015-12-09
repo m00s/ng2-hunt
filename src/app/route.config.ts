@@ -1,4 +1,3 @@
-/// <reference path="../typings/_custom.d.ts" />
 import {Dashboard} from './components/posts/dashboard.ts';
 import {Post} from './components/posts/detail/post.ts';
 import {RouteDefinition} from 'angular2/router';

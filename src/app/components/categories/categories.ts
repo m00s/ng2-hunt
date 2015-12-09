@@ -1,8 +1,3 @@
-/// <reference path="../../../typings/_custom.d.ts" />
-
-/*
- * Angular Directives
- */
 import {
   Directive,
   Component,

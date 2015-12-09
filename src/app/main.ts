@@ -1,5 +1,3 @@
-/// <reference path="../typings/_custom.d.ts" />
-
 import {Component, provide} from 'angular2/angular2';
 import {FORM_PROVIDERS, ELEMENT_PROBE_PROVIDERS} from 'angular2/angular2';
 import {HTTP_PROVIDERS} from 'angular2/http';
