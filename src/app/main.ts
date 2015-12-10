@@ -16,7 +16,7 @@ import {Session} from './services/session';
 import {Token} from './services/token';
 
 @Component({
-  selector: 'ng-hunt',
+  selector: 'ngHunt',
   directives: [ROUTER_DIRECTIVES],
   template: `<router-outlet></router-outlet>`,
   providers: [
