@@ -1,6 +1,4 @@
-/*
- * Helper: root(), and rootDir() are defined at the bottom
- */
+
 var sliceArgs = Function.prototype.call.bind(Array.prototype.slice);
 var toString  = Function.prototype.call.bind(Object.prototype.toString);
 var path = require('path');
@@ -8,9 +6,6 @@ var webpack = require('webpack');
 // Webpack Plugins
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 
-/*
- * Config
- */
 module.exports = {
   devtool: 'source-map',
   debug: true,
@@ -26,6 +21,7 @@ module.exports = {
   entry: {
     'angular2': [
       // Angular 2 Deps
+      'core-js',
       'rxjs',
       'zone.js',
       'reflect-metadata',
@@ -75,16 +71,7 @@ module.exports = {
   plugins: [
     new CommonsChunkPlugin({ name: 'angular2', filename: 'angular2.js', minChunks: Infinity }),
     new CommonsChunkPlugin({ name: 'common',   filename: 'common.js' })
-  ],
-
-  /*
-   * When using `templateUrl` and `styleUrls` please use `__filename`
-   * rather than `module.id` for `moduleId` in `@View`
-   */
-  node: {
-    crypto: false,
-    __filename: true
-  }
+  ]
 };
 
 // Helper functions
