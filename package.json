@@ -1,7 +1,7 @@
 {
   "name": "ng2-hunt",
   "version": "0.0.5",
-  "description": "An angular 2 component to see hot products of Product Hunt",
+  "description": "An angular 2 component to see hot products from Product Hunt",
   "main": "",
   "scripts": {
     "clean": "rimraf node_modules doc && npm cache clean",
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/m00s/ng2-hunt",
   "dependencies": {
     "rxjs": "5.0.0-alpha.14",
-    "angular2": "2.0.0-alpha.50",
+    "angular2": "2.0.0-alpha.52",
     "reflect-metadata": "0.1.2",
     "zone.js": "0.5.8"
   },
