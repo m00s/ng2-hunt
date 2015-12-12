@@ -1,16 +1,9 @@
 /*
  * Angular 2 decorators and services
  */
-import {Directive, Component, View, ElementRef} from 'angular2/angular2';
-import {RouteConfig, Router} from 'angular2/router';
+import {Directive, Component, View, ElementRef, CORE_DIRECTIVES} from 'angular2/angular2';
+import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
-
-/*
- * Angular Directives
- */
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
-
 
 /*
  * App services
@@ -28,7 +21,7 @@ let postsTemplate = require('./dashboard.html');
  */
 @Component({
   selector: 'dashboard',
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES, Navbar, Categories],
+  directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, Navbar, Categories],
   styles: [],
   template:  postsTemplate,
 })
