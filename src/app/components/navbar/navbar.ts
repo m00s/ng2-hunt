@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import {Directive, Component, View, ElementRef} from 'angular2/angular2';
+import {Directive, Component, View, ElementRef} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 
 /*

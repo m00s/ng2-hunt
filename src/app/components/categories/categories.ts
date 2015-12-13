@@ -6,7 +6,7 @@ import {
   Input,
   Output,
   EventEmitter
-  } from 'angular2/angular2';
+  } from 'angular2/core';
 
 import {Hunter} from '../../services/hunter';
 
