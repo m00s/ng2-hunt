@@ -1,12 +1,11 @@
 import {
   Directive,
   Component,
-  CORE_DIRECTIVES,
-  FORM_DIRECTIVES,
   Input,
   Output,
   EventEmitter
-  } from 'angular2/core';
+} from 'angular2/core';
+//import {FORM_PROVIDERS} from 'angular2/common';
 
 import {Hunter} from '../../services/hunter';
 
@@ -18,7 +17,7 @@ let catTemplate = require('./categories.html');
  */
 @Component({
   selector: 'categories',
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES],
+  directives: [],
   styles: [],
   template:  catTemplate
 })

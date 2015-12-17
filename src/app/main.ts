@@ -1,5 +1,6 @@
 import {Component, provide} from 'angular2/core';
-import {FORM_PROVIDERS, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/common_dom';
+import {ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/common_dom';
+import {FORM_PROVIDERS} from 'angular2/common';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {
   RouteConfig,

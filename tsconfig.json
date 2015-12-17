@@ -8,11 +8,16 @@
     "sourceMap": true
   },
   "files": [
-    "typings/main.d.ts",
-    "test/injector.spec.ts",
-    "test/sanity-test.spec.ts",
-    "src/app/**/*.ts",
+    "src/app/main.ts",
+    "src/app/route.config.ts",
     "src/app/bootstrap.ts",
+    "src/app/services/hunter.ts",
+    "src/app/services/session.ts",
+    "src/app/services/token.ts",
+    "src/app/components/categories/categories.ts",
+    "src/app/components/navbar/navbar.ts",
+    "src/app/components/posts/dashboard.ts",
+    "src/app/components/posts/detail/post.ts",
     "src/vendor.ts"
   ],
   "compileOnSave": false

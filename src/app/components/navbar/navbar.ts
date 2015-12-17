@@ -1,14 +1,13 @@
 /*
  * Angular 2 decorators and services
  */
-import {Directive, Component, View, ElementRef} from 'angular2/core';
+import {Directive, Component, View, ElementRef, Output, EventEmitter} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 
 /*
  * Angular Directives
  */
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, Output, EventEmitter} from 'angular2/angular2';
-
+import {FORM_PROVIDERS} from 'angular2/common';
 
 /*
  * App services
@@ -23,7 +22,7 @@ let navTemplate = require('./navbar.html');
  */
 @Component({
   selector: 'navbar',
-  directives: [ CORE_DIRECTIVES],
+  directives: [],
   styles: [],
   template:  navTemplate
 })
