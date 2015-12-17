@@ -8,6 +8,12 @@
     "sourceMap": true
   },
   "files": [
-    "src/app/bootstrap.ts"
-  ]
+    "typings/main.d.ts",
+    "test/injector.spec.ts",
+    "test/sanity-test.spec.ts",
+    "src/app/**/*.ts",
+    "src/app/bootstrap.ts",
+    "src/vendor.ts"
+  ],
+  "compileOnSave": false
 }
