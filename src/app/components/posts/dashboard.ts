@@ -49,7 +49,7 @@ export class Dashboard {
   }
 
   gotoDetail(postId) {
-    this.router.navigate(['/Post', {id: postId}]);
+    this.router.navigate(['Post', {id: postId}]);
   }
 }
 

@@ -5,19 +5,19 @@ import {RouteDefinition} from 'angular2/router';
 export const Routes = {
   home: {
     path: '/',
-    as: 'Home',
+    name: 'Home',
     redirectTo: '/dashboard',
     link: ['/home']
   },
   dashboard: {
     path: '/dashboard',
-    as: 'Dashboard',
+    name: 'Dashboard',
     component: Dashboard,
     link: ['/dashboard']
   },
   detail: {
     path: '/post/:id',
-    as: 'Post',
+    name: 'Post',
     component: Post,
     link: ['/post']
   }
