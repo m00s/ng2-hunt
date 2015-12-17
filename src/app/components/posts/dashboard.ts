@@ -35,7 +35,7 @@ export class Dashboard {
 
   onInit () {
     this.isAuthenticated = this.session.isStarted;
-    if(this.isAuthenticated) {
+    if (this.isAuthenticated) {
       this.fetchPosts();
     }
   }

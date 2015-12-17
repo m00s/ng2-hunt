@@ -9,24 +9,25 @@ import {Injectable} from 'angular2/core';
   }
 
   get() {
-    return this.devMode ? 'e547885fb029f64753913167564dee312dc60a20a408f290af5be9609b91c75b' : this.token;
+    return this.devMode ?
+      'e547885fb029f64753913167564dee312dc60a20a408f290af5be9609b91c75b' : this.token;
   }
 
   set(t) {
     this.token = t;
-    if(this.isLocalStorageSupported()) {
+    if (this.isLocalStorageSupported()) {
       localStorage.setItem('token', t);
     }
   }
 
   destroy() {
-    this.set = null;
-    if(this.isLocalStorageSupported()) {
+    this.set(null);
+    if (this.isLocalStorageSupported()) {
       localStorage.clear();
     }
   }
 
   private isLocalStorageSupported() {
-    return typeof(Storage) !== "undefined";
+    return typeof(Storage) !== 'undefined';
   }
 }

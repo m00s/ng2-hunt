@@ -30,7 +30,7 @@ export class Categories {
   constructor(private _hunter: Hunter) {}
 
   onInit () {
-    if(this.isAuthenticated){
+    if (this.isAuthenticated) {
       this.fetchCategories();
     }
   }
