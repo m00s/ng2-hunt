@@ -21,7 +21,7 @@ let postsTemplate = require('./dashboard.html');
  */
 @Component({
   selector: 'dashboard',
-  directives: [ROUTER_DIRECTIVES, Navbar, Categories],
+  directives: [Navbar, Categories],
   styles: [],
   template:  postsTemplate,
 })
@@ -33,7 +33,7 @@ export class Dashboard {
 
   constructor(public hunter: Hunter, public session: Session, private router: Router) {}
 
-  onInit () {
+  ngOnInit () {
     this.isAuthenticated = this.session.isStarted;
     if (this.isAuthenticated) {
       this.fetchPosts();

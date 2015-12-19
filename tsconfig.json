@@ -9,15 +9,14 @@
   },
   "files": [
     "src/app/main.ts",
-    "src/app/route.config.ts",
     "src/app/bootstrap.ts",
     "src/app/services/hunter.ts",
     "src/app/services/session.ts",
     "src/app/services/token.ts",
     "src/app/components/categories/categories.ts",
     "src/app/components/navbar/navbar.ts",
-    "src/app/components/posts/dashboard.ts",
-    "src/app/components/posts/detail/post.ts",
+    "src/app/components/dashboard/dashboard.ts",
+    "src/app/components/post/post.ts",
     "src/vendor.ts"
   ],
   "compileOnSave": false

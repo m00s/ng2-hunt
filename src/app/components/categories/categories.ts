@@ -5,16 +5,11 @@ import {
   Output,
   EventEmitter
 } from 'angular2/core';
-//import {FORM_PROVIDERS} from 'angular2/common';
 
 import {Hunter} from '../../services/hunter';
 
 let catTemplate = require('./categories.html');
 
-/*
- * App Component
- * Top Level Component
- */
 @Component({
   selector: 'categories',
   directives: [],
@@ -29,7 +24,7 @@ export class Categories {
 
   constructor(private _hunter: Hunter) {}
 
-  onInit () {
+  ngOnInit () {
     if (this.isAuthenticated) {
       this.fetchCategories();
     }

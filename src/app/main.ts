@@ -6,19 +6,21 @@ import {
   RouteConfig,
   ROUTER_DIRECTIVES,
   ROUTER_PROVIDERS,
+  RouterOutlet,
   LocationStrategy,
   HashLocationStrategy
 } from 'angular2/router';
-import {Routes, APP_ROUTES} from './route.config';
 
 
 import {Hunter} from './services/hunter';
 import {Session} from './services/session';
 import {Token} from './services/token';
+import {Dashboard} from './components/dashboard/dashboard';
+import {Post} from './components/post/post';
 
 @Component({
   selector: 'ngHunt',
-  directives: [ROUTER_DIRECTIVES],
+  directives: [RouterOutlet],
   template: `<router-outlet></router-outlet>`,
   providers: [
     FORM_PROVIDERS,
@@ -32,8 +34,19 @@ import {Token} from './services/token';
     provide(LocationStrategy, {useClass: HashLocationStrategy})
   ]
 })
-
-@RouteConfig(APP_ROUTES)
-export class MainComponent {
-  routes = Routes;
-}
+@RouteConfig([{
+    path: '/',
+    name: 'Home',
+    redirectTo: ['Dashboard']
+  }, {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+    useAsDefault: true
+  }, {
+    path: '/post/:id',
+    name: 'Post',
+    component: Post
+  }
+])
+export class MainComponent { }

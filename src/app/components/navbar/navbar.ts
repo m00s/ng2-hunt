@@ -34,7 +34,7 @@ export class Navbar {
 
   constructor(public session: Session) {}
 
-  onInit () {
+  ngOnInit () {
     this.isAuthenticated = this.session.isStarted;
   }
 

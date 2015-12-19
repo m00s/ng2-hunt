@@ -1,8 +1,7 @@
 import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
-import {Routes} from '../../../route.config';
+import {RouteParams, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
-import {Hunter} from '../../../services/hunter';
+import {Hunter} from '../../services/hunter';
 
 let postTemplate = require('./post.html');
 
@@ -19,12 +18,10 @@ let postTemplate = require('./post.html');
 
 export class Post {
   post: any;
-  routes = Routes;
 
-  constructor(private _routeParams: RouteParams, private _hunter: Hunter) {
-  }
+  constructor(private _routeParams: RouteParams, private _hunter: Hunter) {}
 
-  onInit () {
+  ngOnInit () {
     this._hunter
       .getPost(parseInt(this._routeParams.get('id'), 10))
       .subscribe(data => this.post = data);
