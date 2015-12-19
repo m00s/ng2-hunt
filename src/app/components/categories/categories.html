@@ -1,6 +1,6 @@
 <div class="toolbar">
   <ul class="list-inline">
-    <li *ng-for="#c of categories | async" class="category">
+    <li *ngFor="#c of categories | async" class="category">
       <span (click)="fireFilter($event, c)">{{ c.name }}</span>
     </li>
   </ul>

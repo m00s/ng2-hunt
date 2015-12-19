@@ -1,4 +1,4 @@
-import {Injectable, Observable} from 'angular2/angular2';
+import {Injectable} from 'angular2/core';
 import {Http, Headers, Response} from 'angular2/http';
 import {Session} from './session';
 import {Token} from './token';

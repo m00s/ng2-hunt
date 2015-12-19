@@ -1,18 +1,9 @@
-/// <reference path="../../../typings/_custom.d.ts" />
-
 /*
  * Angular 2 decorators and services
  */
-import {Directive, Component, View, ElementRef} from 'angular2/angular2';
-import {RouteConfig, Router} from 'angular2/router';
+import {Directive, Component, View, ElementRef} from 'angular2/core';
+import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
-
-/*
- * Angular Directives
- */
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
-
 
 /*
  * App services
@@ -30,7 +21,7 @@ let postsTemplate = require('./dashboard.html');
  */
 @Component({
   selector: 'dashboard',
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES, Navbar, Categories],
+  directives: [Navbar, Categories],
   styles: [],
   template:  postsTemplate,
 })
@@ -42,9 +33,9 @@ export class Dashboard {
 
   constructor(public hunter: Hunter, public session: Session, private router: Router) {}
 
-  onInit () {
+  ngOnInit () {
     this.isAuthenticated = this.session.isStarted;
-    if(this.isAuthenticated) {
+    if (this.isAuthenticated) {
       this.fetchPosts();
     }
   }
@@ -58,7 +49,7 @@ export class Dashboard {
   }
 
   gotoDetail(postId) {
-    this.router.navigate(['/Post', {id: postId}]);
+    this.router.navigate(['Post', {id: postId}]);
   }
 }
 

@@ -1,19 +1,23 @@
-
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES5",
     "module": "commonjs",
-    "declaration": false,
-    "noImplicitAny": false,
     "removeComments": true,
-    "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
-    "listFiles": false,
-    "outDir": "dist"
+    "sourceMap": true
   },
   "files": [
-    "src/app/bootstrap.ts"
-  ]
+    "src/app/main.ts",
+    "src/app/bootstrap.ts",
+    "src/app/services/hunter.ts",
+    "src/app/services/session.ts",
+    "src/app/services/token.ts",
+    "src/app/components/categories/categories.ts",
+    "src/app/components/navbar/navbar.ts",
+    "src/app/components/dashboard/dashboard.ts",
+    "src/app/components/post/post.ts",
+    "src/vendor.ts"
+  ],
+  "compileOnSave": false
 }

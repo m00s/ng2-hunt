@@ -1,9 +1,9 @@
 <div class="page">
   <div class="navigation">
-    <button class="btn-link router-link" [router-link]="['/Dashboard']"> Back to Dashboard </button>
+    <button class="btn-link router-link" [routerLink]="['Dashboard']"> Back to Dashboard </button>
   </div>
 
-  <section *ng-if=post>
+  <section *ngIf=post>
     <h1>{{ post.name }}</h1>
 
     <figure>

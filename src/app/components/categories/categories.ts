@@ -1,29 +1,18 @@
-/// <reference path="../../../typings/_custom.d.ts" />
-
-/*
- * Angular Directives
- */
 import {
   Directive,
   Component,
-  CORE_DIRECTIVES,
-  FORM_DIRECTIVES,
   Input,
   Output,
   EventEmitter
-  } from 'angular2/angular2';
+} from 'angular2/core';
 
 import {Hunter} from '../../services/hunter';
 
 let catTemplate = require('./categories.html');
 
-/*
- * App Component
- * Top Level Component
- */
 @Component({
   selector: 'categories',
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES],
+  directives: [],
   styles: [],
   template:  catTemplate
 })
@@ -35,8 +24,8 @@ export class Categories {
 
   constructor(private _hunter: Hunter) {}
 
-  onInit () {
-    if(this.isAuthenticated){
+  ngOnInit () {
+    if (this.isAuthenticated) {
       this.fetchCategories();
     }
   }
