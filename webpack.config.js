@@ -1,17 +1,29 @@
 /*
  * Helper: root(), and rootDir() are defined at the bottom
  */
-var sliceArgs = Function.prototype.call.bind(Array.prototype.slice);
-var toString  = Function.prototype.call.bind(Object.prototype.toString);
 var path = require('path');
-var webpack = require('webpack');
 // Webpack Plugins
-var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+var ProvidePlugin = require('webpack/lib/ProvidePlugin');
+var DefinePlugin  = require('webpack/lib/DefinePlugin');
+var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+var CopyWebpackPlugin  = require('copy-webpack-plugin');
+var HtmlWebpackPlugin  = require('html-webpack-plugin');
+var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+
+var metadata = {
+  title: 'Angular2 Product Hunt',
+  baseUrl: '/',
+  host: '0.0.0.0',
+  port: 3000,
+  ENV: ENV
+};
 
 /*
  * Config
  */
 module.exports = {
+  // static data for index.html
+  metadata: metadata,
   // for faster builds use 'eval'
   devtool: 'source-map',
   debug: true,
@@ -35,7 +47,10 @@ module.exports = {
   },
 
   module: {
-    preLoaders: [ { test: /\.ts$/, loader: 'tslint-loader' } ],
+    preLoaders: [
+      { test: /\.ts$/, loader: 'tslint-loader' },
+      { test: /\.css$/, loader: "style-loader!css-loader" }
+    ],
     loaders: [
       // Support for .ts files.
       {
@@ -65,8 +80,18 @@ module.exports = {
   },
 
   plugins: [
-    new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js', minChunks: Infinity }),
-    new CommonsChunkPlugin({ name: 'common', filename: 'common.js', minChunks: 2, chunks: ['app', 'vendor'] })
+    new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
+    // static assets
+    new CopyWebpackPlugin([ { from: 'src/public/assets', to: 'assets' } ]),
+    // generating html
+    new HtmlWebpackPlugin({ template: 'src/public/index.html', inject: false }),
+    // replace
+    new DefinePlugin({
+      'process.env': {
+        'ENV': JSON.stringify(metadata.ENV),
+        'NODE_ENV': JSON.stringify(metadata.ENV)
+      }
+    })
   ],
 
   // Other module loader config
@@ -76,21 +101,22 @@ module.exports = {
   },
   // our Webpack Development Server config
   devServer: {
+    port: metadata.port,
+    host: metadata.host,
     historyApiFallback: true,
-    contentBase: 'src/public',
-    publicPath: '/__build__'
-  }
-
+    watchOptions: { aggregateTimeout: 300, poll: 1000 }
+  },
+  // we need this due to problems with es6-shim
+  node: { global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false }
 };
 
 // Helper functions
-
 function root(args) {
-  args = sliceArgs(arguments, 0);
+  args = Array.prototype.slice.call(arguments, 0);
   return path.join.apply(path, [__dirname].concat(args));
 }
 
 function rootNode(args) {
-  args = sliceArgs(arguments, 0);
+  args = Array.prototype.slice.call(arguments, 0);
   return root.apply(path, ['node_modules'].concat(args));
 }
