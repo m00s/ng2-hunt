@@ -20,10 +20,10 @@ let postsTemplate = require('./dashboard.html');
  * Top Level Component
  */
 @Component({
-  selector: 'dashboard',
-  directives: [Navbar, Categories],
-  styles: [],
-  template:  postsTemplate,
+    selector: 'dashboard',
+    directives: [Navbar, Categories],
+    styles: [],
+    template:  postsTemplate,
 })
 
 export class Dashboard {
@@ -52,4 +52,3 @@ export class Dashboard {
     this.router.navigate(['Post', {id: postId}]);
   }
 }
-

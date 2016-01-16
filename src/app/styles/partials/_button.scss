@@ -1,0 +1,29 @@
+button {
+  background-color: #FF4081 !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+button.md-button {
+  border: 2px solid #FF4081;
+}
+
+button.md-button:not([disabled]):hover {
+  border: 2px solid white;
+  transition: border 0.3s ease;
+}
+
+button[disabled] {
+  opacity: 0.5;
+}
+
+button.btn-link {
+  background-color: transparent !important;
+  text-decoration: none !important;
+  border: none !important;
+  border-bottom: 2px solid white !important;
+  padding: 0 !important;
+}

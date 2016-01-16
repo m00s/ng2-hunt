@@ -26,7 +26,3 @@ import 'angular2/core';
 
 // RxJS
 import 'rxjs';
-
-// Materialize
-import 'jquery';
-import 'materialize-css/js/materialize';

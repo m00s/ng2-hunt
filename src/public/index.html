@@ -7,14 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Angular2 Hunter">
-    <link rel="stylesheet" href="assets/css/style.css">
 
-      <!-- base url -->
-      <base href="{%= o.webpackConfig.metadata.baseUrl %}">
+    <!-- base url -->
+    <base href="{%= o.webpackConfig.metadata.baseUrl %}">
 
-      {% for (var css in o.htmlWebpackPlugin.files.css) { %}
-      <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
-      {% } %}
+    {% for (var css in o.htmlWebpackPlugin.files.css) { %}
+    <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
+    {% } %}
   </head>
 
   <body>

@@ -49,7 +49,7 @@ module.exports = {
   module: {
     preLoaders: [
       { test: /\.ts$/, loader: 'tslint-loader' },
-      { test: /\.css$/, loader: "style-loader!css-loader" }
+      { test: /\.css$/, loader: "style!css!sass" }
     ],
     loaders: [
       // Support for .ts files.
@@ -73,8 +73,11 @@ module.exports = {
       // Support for CSS as raw text
       { test: /\.css$/,   loader: 'raw-loader' },
 
+      // Support for SCSS
+      {test: /\.scss$/, include: [path.resolve(__dirname, 'src/app/styles')], loader: 'style!css!!sass'},
+
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader' },
+      { test: /\.html$/,  loader: 'raw-loader' }
     ],
     noParse: [ /zone\.js\/dist\/.+/, /angular2\/bundles\/.+/ ]
   },
@@ -93,6 +96,12 @@ module.exports = {
       }
     })
   ],
+
+  sassLoader: {
+    outputStyle: 'nested',
+    precision: 10,
+    sourceComments: false
+  },
 
   // Other module loader config
   tslint: {
