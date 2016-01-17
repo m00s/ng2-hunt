@@ -1,0 +1,64 @@
+@import "partials/button";
+@import "partials/palette";
+@import "partials/tile";
+@import "partials/toolbar";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: $primary-color;
+  color: white;
+}
+
+.page {
+  margin: 20px;
+}
+
+.page .navigation {
+  height: 50px;
+  line-height: 50px;
+  margin: 30px 0px;
+  padding: 0 15px;
+  border: 2px solid $light-primary-color;
+}
+
+.main-container {
+  margin: 20px 0;
+}
+
+.main-container nav {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.main-container nav h3 {
+  margin: 5px 8px;
+}
+
+.main-container .post {
+  position: relative;
+  width: 15%;
+  height: 200px;
+  float: left;
+  overflow: hidden;
+  border: 2px solid $light-primary-color;
+  text-align: center;
+  margin: 10px 10px;
+}
+
+.main-container .post .thumbnail {
+  max-width: 50%;
+  max-height: 200px;
+}
+
+.main-container section.posts {
+  display: block;
+  text-align: center;
+}
+
+.clickable:hover {
+  cursor: pointer !important;
+}

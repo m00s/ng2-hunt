@@ -18,6 +18,9 @@ import {Token} from './services/token';
 import {Dashboard} from './components/dashboard/dashboard';
 import {Post} from './components/post/post';
 
+// Global styles
+import './styles/style.scss';
+
 @Component({
   selector: 'ngHunt',
   directives: [RouterOutlet],
