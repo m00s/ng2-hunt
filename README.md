@@ -1,4 +1,4 @@
-# ng2-hunt
+# ng2 - Product Hunt
 
 This is a sample project to hack with the [Product Hunt api](https://api.producthunt.com/v1/docs) and have fun with the [Angular 2 beta](https://www.npmjs.com/package/angular2).
 
@@ -20,9 +20,11 @@ Find me on:
 Installation
 ------------
 
-This project is based on the awesome [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter), so clone this repo, `npm  install` to resolve dependencies
+This project is based on the awesome [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter).
+
+Clone this repo, `npm  i` to resolve dependencies
 and `npm run` to start the webserver listening on `http://localhost:3000`.
 
 Contributing
 ------------
-The only goal of this project is to learn new stuff about ng2, so if you learn something cool and would like to share please submit a PR.
+The only goal of this project is to learn new stuff about Angular 2, if you learn something cool and would like to share please submit a PR.
