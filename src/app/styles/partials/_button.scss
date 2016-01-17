@@ -1,5 +1,7 @@
+@import "partials/palette";
+
 button {
-  background-color: #FF4081 !important;
+  background-color: $accent-color !important;
   color: white !important;
   padding: 10px 20px !important;
   &:hover {
@@ -7,11 +9,11 @@ button {
   }
 }
 
-button.md-button {
-  border: 2px solid #FF4081;
+button.ph-button {
+  border: 2px solid $accent-color;
 }
 
-button.md-button:not([disabled]):hover {
+button.ph-button:not([disabled]):hover {
   border: 2px solid white;
   transition: border 0.3s ease;
 }
