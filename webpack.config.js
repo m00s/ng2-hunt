@@ -3,9 +3,8 @@
  */
 var path = require('path');
 // Webpack Plugins
-var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var DefinePlugin  = require('webpack/lib/DefinePlugin');
-var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+var path = require('path');
+var webpack = require('webpack');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
@@ -28,27 +27,25 @@ module.exports = {
   devtool: 'source-map',
   debug: true,
 
-  entry: {
-    'vendor': './src/vendor.ts',
-    'app': './src/app/bootstrap.ts' // our angular app
-  },
+  // our angular app
+  entry: { 'vendor': './src/vendor.ts', 'main': './src/app/bootstrap.ts' },
 
   // Config for our build files
   output: {
-    path: root('__build__'),
-    filename: '[name].js',
+    path: root('dist'),
+    filename: '[name].bundle.js',
     sourceMapFilename: '[name].map',
     chunkFilename: '[id].chunk.js'
   },
 
   resolve: {
     // ensure loader extensions match
-    extensions: ['','.ts','.js','.json', '.css', '.html']
+    extensions: ['','.ts','.js','.json','.css','.html']
   },
 
   module: {
     preLoaders: [
-      { test: /\.ts$/, loader: 'tslint-loader' },
+      { test: /\.ts$/, loader: 'tslint-loader', exclude: [/node_modules/] },
       { test: /\.css$/, loader: "style!css!sass" }
     ],
     loaders: [
@@ -83,13 +80,14 @@ module.exports = {
   },
 
   plugins: [
-    new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
     // static assets
-    new CopyWebpackPlugin([ { from: 'src/public/assets', to: 'assets' } ]),
+    //new CopyWebpackPlugin([ { from: 'src/app/assets', to: 'src/public/assets' } ]),
     // generating html
     new HtmlWebpackPlugin({ template: 'src/public/index.html', inject: false }),
     // replace
-    new DefinePlugin({
+    new webpack.DefinePlugin({
       'process.env': {
         'ENV': JSON.stringify(metadata.ENV),
         'NODE_ENV': JSON.stringify(metadata.ENV)
@@ -116,7 +114,7 @@ module.exports = {
     watchOptions: { aggregateTimeout: 300, poll: 1000 }
   },
   // we need this due to problems with es6-shim
-  node: { global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false }
+  node: {global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false}
 };
 
 // Helper functions
