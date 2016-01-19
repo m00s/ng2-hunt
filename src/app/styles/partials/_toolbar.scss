@@ -17,15 +17,20 @@ ul.toolbar {
       border-right: none;
     }
 
-    &:hover {
-      color: $light-primary-color;
-      span {
-        border-bottom: 2px solid $light-primary-color;
-      }
+    &:hover span {
+      border-bottom: 2px solid;
     }
+  }
 
-    &:active {
-      color: $dark-primary-color;
+  li.category.active {
+    font-size: 1.2em;
+    font-weight: bold;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
+    span {
+      border-bottom: 2px solid;
     }
   }
 }

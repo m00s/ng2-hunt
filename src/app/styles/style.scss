@@ -1,5 +1,9 @@
+// Colors and Fonts
+@import "utils/palette";
+@import "utils/fonts";
+
+// Components
 @import "partials/button";
-@import "partials/palette";
 @import "partials/tile";
 @import "partials/toolbar";
 
@@ -11,6 +15,7 @@
 html, body {
   background-color: $primary-color;
   color: white;
+  font-family: $roboto-slab;
 }
 
 .page {
