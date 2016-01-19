@@ -9,14 +9,15 @@
     "sourceMap": true
   },
   "files": [
-    "typings/main.d.ts",
-    "test/injector.spec.ts",
-    "test/sanity-test.spec.ts",
-    "src/app/app.spec.ts",
-    "src/app/home/home.spec.ts",
-    "src/app/home/directives/x-large.spec.ts",
-    "src/app/home/providers/title.spec.ts",
-    "src/main.ts",
+    "src/app/main.ts",
+    "src/app/bootstrap.ts",
+    "src/app/services/hunter.ts",
+    "src/app/services/session.ts",
+    "src/app/services/token.ts",
+    "src/app/components/categories/categories.ts",
+    "src/app/components/navbar/navbar.ts",
+    "src/app/components/dashboard/dashboard.ts",
+    "src/app/components/post/post.ts",
     "src/vendor.ts"
   ],
   "filesGlob": [

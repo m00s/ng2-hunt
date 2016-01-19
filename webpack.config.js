@@ -28,7 +28,10 @@ module.exports = {
   debug: true,
 
   // our angular app
-  entry: { 'vendor': './src/vendor.ts', 'main': './src/app/bootstrap.ts' },
+  entry: {
+    'vendor': './src/vendor.ts',
+    'app': './src/app/bootstrap.ts'
+  },
 
   // Config for our build files
   output: {
