@@ -19,6 +19,7 @@ let catTemplate = require('./categories.html');
 
 export class Categories {
   categories: any;
+  activeCategory: any;
   @Input() isAuthenticated: boolean;
   @Output() filterBy = new EventEmitter();
 
@@ -34,8 +35,11 @@ export class Categories {
     this.categories = this._hunter.getCategories();
   }
 
-  fireFilter(event, c) {
-    this.filterBy.next({category: c});
+  onFilter(event, c) {
+    if(this.activeCategory !== c) {
+      this.filterBy.emit({category: c});
+      this.activeCategory = c;
+    }
   }
 }
 
