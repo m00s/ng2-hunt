@@ -36,7 +36,7 @@ export class Categories {
   }
 
   onFilter(event, c) {
-    if(this.activeCategory !== c) {
+    if (this.activeCategory !== c) {
       this.filterBy.emit({category: c});
       this.activeCategory = c;
     }
