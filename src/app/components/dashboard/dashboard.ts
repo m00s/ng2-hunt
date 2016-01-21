@@ -29,6 +29,7 @@ let postsTemplate = require('./dashboard.html');
 export class Dashboard {
 
   isAuthenticated: boolean = false;
+  isLoadingPosts: boolean = false;
   posts: any;
 
   constructor(public hunter: Hunter, public session: Session, private router: Router) {}
@@ -41,6 +42,8 @@ export class Dashboard {
   }
 
   fetchPosts() {
+    this.posts = [];
+    this.isLoadingPosts = true;
     this.posts = this.hunter.getPosts();
   }
 

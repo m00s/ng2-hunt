@@ -10,6 +10,7 @@
     <categories [isAuthenticated]="isAuthenticated" (filterBy)="filterPosts($event, c)"></categories>
 
     <section class="posts">
+      <div class="loading-spinner" *ngIf="isLoadingPosts"> Loading ... </div>
       <div *ngFor="#p of posts | async" class="post">
         <div class="tile-header">
           <h3> {{ p.name }} </h3>
