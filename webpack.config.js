@@ -12,6 +12,7 @@ var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 var metadata = {
   title: 'Angular2 Product Hunt',
   baseUrl: '/',
+  contentBase: 'src/',
   host: '0.0.0.0',
   port: 3000,
   ENV: ENV
@@ -29,6 +30,7 @@ module.exports = {
 
   // our angular app
   entry: {
+    'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
     'app': './src/app/bootstrap.ts'
   },
@@ -43,21 +45,22 @@ module.exports = {
 
   resolve: {
     // ensure loader extensions match
-    extensions: ['','.ts','.js','.json','.css','.html','scss']
+    extensions: ['.ts','.js','.json','.css','.html'].reduce(function(memo, val) {
+      return memo.concat('.async' + val, val); // ensure .async also works
+    }, [''])
   },
 
   module: {
     preLoaders: [
-      { test: /\.ts$/, loader: 'tslint-loader', exclude: [/node_modules/] },
-      { test: /\.css$/, loader: "style!css!sass" }
+      // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ /node_modules/ ] },
+      { test: /\.js$/, loader: "source-map-loader", exclude: [ /node_modules\/rxjs/ ] }
     ],
     loaders: [
+      // Support Angular 2 async routes via .async.ts
+      { test: /\.async\.ts$/, loaders: ['es6-promise-loader', 'ts-loader'], exclude: [ /\.(spec|e2e)\.ts$/ ] },
+
       // Support for .ts files.
-      {
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        exclude: [ /\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/ ]
-      },
+      { test: /\.ts$/, loader: 'ts-loader', exclude: [ /\.(spec|e2e|async)\.ts$/ ] },
 
       // Support for *.json files.
       { test: /\.json$/,  loader: 'json-loader' },
@@ -65,20 +68,19 @@ module.exports = {
       // Support for CSS as raw text
       { test: /\.css$/,   loader: 'raw-loader' },
 
-      // Support for SCSS
-      {test: /\.scss$/, include: [path.resolve(__dirname, 'src/app/styles')], loader: 'style!css!!sass'},
-
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader' }
-    ],
-    noParse: [ /zone\.js\/dist\/.+/, /angular2\/bundles\/.+/ ]
+      { test: /\.html$/,  loader: 'raw-loader' },
+
+      // Support for SCSS
+      { test: /\.scss$/, include: [path.resolve(__dirname, 'src/app/styles')], loader: 'style!css!!sass' }
+    ]
   },
 
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'polyfills', filename: 'polyfills.bundle.js', minChunks: Infinity }),
     // static assets
-    //new CopyWebpackPlugin([ { from: 'src/app/assets', to: 'src/public/assets' } ]),
+    new CopyWebpackPlugin([ { from: 'src/public/assets', to: 'assets' } ]),
     // generating html
     new HtmlWebpackPlugin({ template: 'src/public/index.html', inject: false }),
     // replace
@@ -99,7 +101,8 @@ module.exports = {
   // Other module loader config
   tslint: {
     emitErrors: false,
-    failOnHint: false
+    failOnHint: false,
+    resourcePath: 'src'
   },
   // our Webpack Development Server config
   devServer: {
