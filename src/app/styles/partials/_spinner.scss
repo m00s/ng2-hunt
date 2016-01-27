@@ -41,8 +41,8 @@
   left: 5.1em;
   -webkit-transform-origin: 0px 5.1em;
   transform-origin: 0px 5.1em;
-  -webkit-animation: loadAnimation 2s infinite ease;
-  animation: loadAnimation 2s infinite ease;
+  -webkit-animation: loadAnimation 0.5s infinite ease;
+  animation: loadAnimation 0.5s infinite ease;
 }
 @-webkit-keyframes loadAnimation {
   0% {

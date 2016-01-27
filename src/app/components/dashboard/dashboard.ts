@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import {Directive, Component, View, ElementRef} from 'angular2/core';
+import {Directive, Component, View, ElementRef, ChangeDetectionStrategy} from 'angular2/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
 
@@ -12,6 +12,8 @@ import {Hunter} from '../../services/hunter';
 import {Session} from '../../services/session';
 import {Navbar} from '../navbar/navbar';
 import {Categories} from '../categories/categories';
+import {LoadingSpinner} from '../../commons/loading-spinner/loading-spinner';
+import {Observable} from "rxjs/Observable";
 
 let postsTemplate = require('./dashboard.html');
 
@@ -21,16 +23,15 @@ let postsTemplate = require('./dashboard.html');
  */
 @Component({
     selector: 'dashboard',
-    directives: [Navbar, Categories],
+    directives: [Navbar, Categories, LoadingSpinner],
     styles: [],
-    template:  postsTemplate,
+    template:  postsTemplate
 })
 
 export class Dashboard {
 
   isAuthenticated: boolean = false;
-  isLoadingPosts: boolean = false;
-  posts: any;
+  posts: Observable<Array<any>>;
 
   constructor(public hunter: Hunter, public session: Session, private router: Router) {}
 
@@ -41,14 +42,12 @@ export class Dashboard {
     }
   }
 
-  fetchPosts() {
-    this.posts = [];
-    this.isLoadingPosts = true;
-    this.posts = this.hunter.getPosts();
+  fetchPosts(category?) {
+    this.posts = this.hunter.getPosts(category);
   }
 
   filterPosts(event, c) {
-    this.posts = this.hunter.getPosts(event.category.slug);
+    this.fetchPosts(c);
   }
 
   gotoDetail(postId) {

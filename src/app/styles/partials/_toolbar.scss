@@ -7,28 +7,32 @@ ul.toolbar {
   text-align: center;
 
   li.category {
-    display: inline;
-    width: 300px;
-    height: 50px;
-    line-height: 50px;
-    padding: 5px 10px;
+    display: inline-block;
+    min-width: 100px;
+    height: 60px;
+    line-height: 60px;
+    padding: 0px 10px;
     border-right: 2px solid $divider-color;
     &:last-child {
       border-right: none;
     }
 
-    &:hover span {
-      border-bottom: 2px solid;
+    &:hover:not(.active) {
+      background-color: darken($accent-color, 5%);
+      span {
+        border-bottom: 2px solid;
+      }
     }
   }
 
   li.category.active {
     font-size: 1.2em;
     font-weight: bold;
-    -webkit-transition: all 0.25s;
-    -moz-transition: all 0.25s;
-    -o-transition: all 0.25s;
-    transition: all 0.25s;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    transition: all 0.1s;
+    background-color: darken($accent-color, 10%);
     span {
       border-bottom: 2px solid;
     }
