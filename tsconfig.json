@@ -18,6 +18,7 @@
     "src/app/components/navbar/navbar.ts",
     "src/app/components/dashboard/dashboard.ts",
     "src/app/components/post/post.ts",
+    "src/app/commons/loading-spinner/loading-spinner.ts",
     "src/vendor.ts"
   ],
   "filesGlob": [
