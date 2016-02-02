@@ -2,8 +2,6 @@
  * Helper: root(), and rootDir() are defined at the bottom
  */
 var path = require('path');
-// Webpack Plugins
-var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
@@ -27,13 +25,10 @@ module.exports = {
   // for faster builds use 'eval'
   devtool: 'source-map',
   debug: true,
+  // cache: false,
 
   // our angular app
-  entry: {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/main.ts',
-    'app': './src/app/app.ts'
-  },
+  entry: { 'polyfills': './src/polyfills.ts', 'main': './src/main.ts' },
 
   // Config for our build files
   output: {
@@ -50,8 +45,7 @@ module.exports = {
 
   module: {
     preLoaders: [
-      // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ /node_modules/ ] },
-      { test: /\.js$/, loader: "source-map-loader", exclude: [ /node_modules\/rxjs/ ] }
+      { test: /\.js$/, loader: "source-map-loader", exclude: [ root('node_modules/rxjs') ] }
     ],
     loaders: [
       // Support Angular 2 async routes via .async.ts
@@ -106,6 +100,7 @@ module.exports = {
   devServer: {
     port: metadata.port,
     host: metadata.host,
+    // contentBase: 'src/',
     historyApiFallback: true,
     watchOptions: { aggregateTimeout: 300, poll: 1000 }
   },
