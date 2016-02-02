@@ -31,8 +31,8 @@ module.exports = {
   // our angular app
   entry: {
     'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'app': './src/app/bootstrap.ts'
+    'vendor': './src/main.ts',
+    'app': './src/app/app.ts'
   },
 
   // Config for our build files
@@ -78,9 +78,9 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({ name: 'polyfills', filename: 'polyfills.bundle.js', minChunks: Infinity }),
     // static assets
-    new CopyWebpackPlugin([ { from: 'src/public/assets', to: 'assets' } ]),
+    new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/public/index.html', inject: false }),
+    new HtmlWebpackPlugin({ template: 'src/index.html', inject: false }),
     // replace
     new webpack.DefinePlugin({
       'process.env': {

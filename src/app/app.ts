@@ -1,7 +1,5 @@
 import {Component, provide} from 'angular2/core';
-import {ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/common_dom';
-import {FORM_PROVIDERS} from 'angular2/common';
-import {HTTP_PROVIDERS} from 'angular2/http';
+
 import {
   RouteConfig,
   ROUTER_DIRECTIVES,
@@ -26,10 +24,7 @@ import './styles/style.scss';
   directives: [RouterOutlet],
   template: `<router-outlet></router-outlet>`,
   providers: [
-    FORM_PROVIDERS,
     ROUTER_PROVIDERS,
-    HTTP_PROVIDERS,
-    ELEMENT_PROBE_PROVIDERS,
     ROUTER_PROVIDERS,
     Hunter,
     Session,
