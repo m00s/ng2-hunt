@@ -10,7 +10,6 @@
   },
   "files": [
     "src/app/app.ts",
-    "src/app/bootstrap.ts",
     "src/app/services/hunter.ts",
     "src/app/services/session.ts",
     "src/app/services/token.ts",

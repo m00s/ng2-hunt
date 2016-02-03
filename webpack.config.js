@@ -64,7 +64,7 @@ module.exports = {
       { test: /\.html$/,  loader: 'raw-loader' },
 
       // Support for SCSS
-      { test: /\.scss$/, include: [path.resolve(__dirname, 'src/app/styles')], loader: 'style!css!!sass' }
+      { test: /\.scss$/, include: [path.resolve(__dirname, 'src/assets/styles')], loader: 'style!css!!sass' }
     ]
   },
 
