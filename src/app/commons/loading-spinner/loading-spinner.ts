@@ -14,7 +14,7 @@ let spinnerTemplate = require('./loading-spinner.html');
 
 export class LoadingSpinner {
     isLoading: boolean = true;
-    @Input() showAsync: Observable<boolean>;
+    @Input() showAsync: Observable<any>;
 
     ngOnInit () {
         this.showAsync.subscribe(() => {
