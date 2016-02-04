@@ -9,8 +9,7 @@
     "sourceMap": true
   },
   "files": [
-    "src/app/main.ts",
-    "src/app/bootstrap.ts",
+    "src/app/app.ts",
     "src/app/services/hunter.ts",
     "src/app/services/session.ts",
     "src/app/services/token.ts",
@@ -19,7 +18,7 @@
     "src/app/components/dashboard/dashboard.ts",
     "src/app/components/post/post.ts",
     "src/app/commons/loading-spinner/loading-spinner.ts",
-    "src/vendor.ts"
+    "src/main.ts"
   ],
   "filesGlob": [
     "./src/**/*.ts",

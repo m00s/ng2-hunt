@@ -1,7 +1,5 @@
 import {Component, provide} from 'angular2/core';
-import {ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/common_dom';
-import {FORM_PROVIDERS} from 'angular2/common';
-import {HTTP_PROVIDERS} from 'angular2/http';
+
 import {
   RouteConfig,
   ROUTER_DIRECTIVES,
@@ -19,17 +17,14 @@ import {Dashboard} from './components/dashboard/dashboard';
 import {Post} from './components/post/post';
 
 // Global styles
-import './styles/style.scss';
+import '../assets/styles/style.scss';
 
 @Component({
   selector: 'ngHunt',
   directives: [RouterOutlet],
   template: `<router-outlet></router-outlet>`,
   providers: [
-    FORM_PROVIDERS,
     ROUTER_PROVIDERS,
-    HTTP_PROVIDERS,
-    ELEMENT_PROBE_PROVIDERS,
     ROUTER_PROVIDERS,
     Hunter,
     Session,
