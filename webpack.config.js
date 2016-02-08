@@ -61,7 +61,7 @@ module.exports = {
       { test: /\.css$/,   loader: 'raw-loader' },
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader' },
+      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/index.html') ] },
 
       // Support for SCSS
       { test: /\.scss$/, include: [path.resolve(__dirname, 'src/assets/styles')], loader: 'style!css!!sass' }
@@ -74,7 +74,7 @@ module.exports = {
     // static assets
     new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/index.html', inject: false }),
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
     // replace
     new webpack.DefinePlugin({
       'process.env': {
