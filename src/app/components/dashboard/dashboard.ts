@@ -12,7 +12,7 @@ import {Hunter} from '../../services/hunter';
 import {Session} from '../../services/session';
 import {Navbar} from '../navbar/navbar';
 import {Categories} from '../categories/categories';
-import {LoadingSpinner} from '../../commons/loading-spinner/loading-spinner';
+import {LoadingSpinnerDirective} from '../../commons/loading-spinner/loadingSpinner';
 import {Observable} from "rxjs/Observable";
 
 let postsTemplate = require('./dashboard.html');
@@ -23,7 +23,7 @@ let postsTemplate = require('./dashboard.html');
  */
 @Component({
     selector: 'dashboard',
-    directives: [Navbar, Categories, LoadingSpinner],
+    directives: [Navbar, Categories, LoadingSpinnerDirective],
     styles: [],
     template:  postsTemplate
 })

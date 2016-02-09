@@ -10,11 +10,8 @@
     <link rel="shortcut icon" href="assets/icon/favicon.ico">
 
     <!-- base url -->
-    <base href="{%= o.webpackConfig.metadata.baseUrl %}">
+    <base href="<%= webpackConfig.metadata.baseUrl %>">
 
-    {% for (var css in o.htmlWebpackPlugin.files.css) { %}
-    <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
-    {% } %}
   </head>
 
   <body>
@@ -22,15 +19,10 @@
       Loading...
     </ngHunt>
 
-    {% if (o.webpackConfig.metadata.ENV === 'development') { %}
+    <% if (webpackConfig.metadata.ENV === 'development') { %>
     <!-- Webpack Dev Server reload -->
-    <script src="http://{%= o.webpackConfig.metadata.host %}:{%= o.webpackConfig.metadata.port %}/webpack-dev-server.js"></script>
-    {% } %}
-
-    <!-- Webpack HtmlWebpackPlugin manually inject scripts -->
-    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
-    <script src="{%= o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
-    {% } %}
+    <script src="http://<%= webpackConfig.metadata.host %>:<%= webpackConfig.metadata.port %>/webpack-dev-server.js"></script>
+    <% } %>
 
   </body>
 </html>

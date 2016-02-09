@@ -5,14 +5,14 @@ import {
 } from 'angular2/core';
 import {Observable} from "rxjs/Observable";
 
-let spinnerTemplate = require('./loading-spinner.html');
+let spinnerTemplate = require('./loadingSpinner.html');
 
 @Component({
-    selector: 'loading-spinner',
-    template:  spinnerTemplate
+    selector: 'loadingSpinner',
+    template: spinnerTemplate
 })
 
-export class LoadingSpinner {
+export class LoadingSpinnerDirective {
     isLoading: boolean = true;
     @Input() showAsync: Observable<any>;
 
