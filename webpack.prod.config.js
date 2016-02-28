@@ -1,10 +1,5 @@
-// @AngularClass
 
-/*
- * Helper: root(), and rootDir() are defined at the bottom
- */
-var path = require('path');
-var zlib = require('zlib');
+var helpers = require('./helpers');
 // Webpack Plugins
 var webpack = require('webpack');
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
@@ -22,40 +17,39 @@ var HOST = process.env.HOST || 'localhost';
 var PORT = process.env.PORT || 8080;
 
 var metadata = {
-  title: 'Angular2 Product Hunt',
+  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
   baseUrl: '/',
   host: HOST,
   port: PORT,
   ENV: ENV
 };
 
-/*
- * Config
- */
-module.exports = {
+
+helpers.validate({
   // static data for index.html
   metadata: metadata,
-  // for faster builds use 'eval'
+
   devtool: 'source-map',
+  cache: false,
   debug: false,
 
   entry: {
-    'vendor':'./src/vendor.ts',
-    'app': './src/app/bootstrap.ts'
+   'polyfills':'./src/polyfills.ts',
+   'main':'./src/main.ts' // our angular app
   },
 
   // Config for our build files
   output: {
-    path: root('dist'),
-    filename: '[name].[chunkhash].bundle.js',
-    sourceMapFilename: '[name].[chunkhash].bundle.map',
-    chunkFilename: '[id].[chunkhash].chunk.js'
+   path: helpers.root('dist'),
+   filename: '[name].[chunkhash].bundle.js',
+   sourceMapFilename: '[name].[chunkhash].bundle.map',
+   chunkFilename: '[id].[chunkhash].chunk.js'
   },
 
   resolve: {
-    cache: false,
-    // ensure loader extensions match
-    extensions: ['','.ts','.js','.json','.css','.html','scss']
+   cache: false,
+   // ensure loader extensions match
+   extensions: ['', '.ts','.js']
   },
 
   module: {
@@ -64,7 +58,14 @@ module.exports = {
         test: /\.ts$/,
         loader: 'tslint-loader',
         exclude: [
-          /node_modules/
+          helpers.root('node_modules')
+        ]
+      },
+      {
+        test: /\.js$/,
+        loader: 'source-map-loader',
+        exclude: [
+          helpers.root('node_modules/rxjs')
         ]
       }
     ],
@@ -80,20 +81,34 @@ module.exports = {
             'noEmitHelpers': true,
           }
         },
-        exclude: [ /\.(spec|e2e)\.ts$/ ]
+        exclude: [
+          /\.(spec|e2e)\.ts$/
+        ]
       },
 
       // Support for *.json files.
-      { test: /\.json$/,  loader: 'json-loader' },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
 
       // Support for CSS as raw text
-      { test: /\.css$/,   loader: 'raw-loader' },
+      {
+        test: /\.css$/,
+        loader: 'raw-loader'
+      },
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/index.html') ] },
+      {
+        test: /\.html$/,
+        loader: 'raw-loader',
+        exclude: [
+          helpers.root('src/index.html')
+        ]
+      },
 
       // Support for SCSS
-      {test: /\.scss$/, include: [path.resolve(__dirname, 'src/app/styles')], loader: 'style!css!!sass'}
+      { test: /\.scss$/, include: [path.resolve(__dirname, 'src/app/styles')], loader: 'style!css!!sass' }
     ]
   },
 
@@ -102,19 +117,19 @@ module.exports = {
     new DedupePlugin(),
     new OccurenceOrderPlugin(true),
     new CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.[chunkhash].bundle.js',
-      minChunks: Infinity
+      name: 'polyfills',
+      filename: 'polyfills.[chunkhash].bundle.js',
+      chunks: Infinity
     }),
     // static assets
     new CopyWebpackPlugin([
       {
-        from: 'src/public/assets',
+        from: 'src/assets',
         to: 'assets'
       }
     ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/public/index.html' }),
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
     new DefinePlugin({
       // Environment helpers
       'process.env': {
@@ -128,11 +143,10 @@ module.exports = {
       '__decorate': 'ts-helper/decorate',
       '__awaiter': 'ts-helper/awaiter',
       '__extends': 'ts-helper/extends',
-      '__param': 'ts-helper/param',
-      'Reflect': 'es7-reflect-metadata/dist/browser'
+      '__param': 'ts-helper/param'
     }),
     new UglifyJsPlugin({
-      beautify: true,
+      beautify: false,
       mangle: false,
       comments: false,
       compress : {
@@ -153,7 +167,16 @@ module.exports = {
   // Other module loader config
   tslint: {
     emitErrors: true,
-    failOnHint: true
+    failOnHint: true,
+    resourcePath: 'src',
+  },
+
+  htmlLoader: {
+    minimize: true,
+    removeAttributeQuotes: false,
+    caseSensitive: true,
+    customAttrSurround: [ [/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/] ],
+    customAttrAssign: [ /\)?\]?=/ ]
   },
   // don't use devServer for production
 
@@ -167,19 +190,3 @@ module.exports = {
     setImmediate: false
   }
 };
-
-// Helper functions
-
-function root(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return path.join.apply(path, [__dirname].concat(args));
-}
-
-function rootNode(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return root.apply(path, ['node_modules'].concat(args));
-}
-
-function gzipMaxLevel(buffer, callback) {
-  return zlib['gzip'](buffer, {level: 9}, callback)
-}

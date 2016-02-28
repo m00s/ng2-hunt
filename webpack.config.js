@@ -1,17 +1,16 @@
-/*
- * Helper: root(), and rootDir() are defined at the bottom
- */
-var path = require('path');
+
 var webpack = require('webpack');
-var CopyWebpackPlugin  = require('copy-webpack-plugin');
-var HtmlWebpackPlugin  = require('html-webpack-plugin');
+var helpers = require('./helpers');
+
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 
 var metadata = {
-  title: 'Angular2 Product Hunt',
+  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
   baseUrl: '/',
-  contentBase: 'src/',
-  host: '0.0.0.0',
+  host: 'localhost',
   port: 3000,
   ENV: ENV
 };
@@ -39,13 +38,12 @@ module.exports = {
   },
 
   resolve: {
-    // ensure loader extensions match
-    extensions: prepend(['.ts','.js','.json','.css','.html'], '.async')
+    extensions: ['', '.ts', '.async.ts', '.js']
   },
 
   module: {
     preLoaders: [
-      { test: /\.js$/, loader: "source-map-loader", exclude: [ root('node_modules/rxjs') ] }
+      { test: /\.js$/, loader: "source-map-loader", exclude: [ helpers.root('node_modules/rxjs') ] }
     ],
     loaders: [
       // Support Angular 2 async routes via .async.ts
@@ -61,7 +59,7 @@ module.exports = {
       { test: /\.css$/,   loader: 'raw-loader' },
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/index.html') ] },
+      { test: /\.html$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
 
       // Support for SCSS
       { test: /\.scss$/, include: [path.resolve(__dirname, 'src/assets/styles')], loader: 'style!css!!sass' }
@@ -105,21 +103,5 @@ module.exports = {
     watchOptions: { aggregateTimeout: 300, poll: 1000 }
   },
   // we need this due to problems with es6-shim
-  node: {global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false}
+  node: { global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false }
 };
-
-// Helper functions
-function prepend(extensions, args) {
-  args = args || [];
-  if (!Array.isArray(args)) { args = [args] }
-  return extensions.reduce(function(memo, val) {
-    return memo.concat(val, args.map(function(prefix) {
-      return prefix + val
-    }));
-  }, ['']);
-}
-
-function root(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return path.join.apply(path, [__dirname].concat(args));
-}
