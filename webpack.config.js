@@ -4,15 +4,17 @@ var helpers = require('./helpers');
 
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
-var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-
-var metadata = {
+const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+const HMR = helpers.hasProcessFlag('hot');
+const METADATA = {
   title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
   baseUrl: '/',
   host: 'localhost',
   port: 3000,
-  ENV: ENV
+  ENV: ENV,
+  HMR: HMR
 };
 
 /*
@@ -24,33 +26,43 @@ module.exports = {
   // for faster builds use 'eval'
   devtool: 'source-map',
   debug: true,
-  // cache: false,
+  devtool: 'cheap-module-eval-source-map',
 
   // our angular app
-  entry: { 'polyfills': './src/polyfills.ts', 'main': './src/main.ts' },
+  entry: {
+    'polyfills': './src/polyfills.ts',
+    'main': './src/main.ts'
+    'vendor': './src/vendor.ts',
+  },
 
   // Config for our build files
   output: {
-    path: root('dist'),
+    path: helpers.root('dist'),
     filename: '[name].bundle.js',
     sourceMapFilename: '[name].map',
     chunkFilename: '[id].chunk.js'
   },
 
   resolve: {
-    extensions: ['', '.ts', '.async.ts', '.js']
+    extensions: ['','.ts','.js']
   },
 
   module: {
     preLoaders: [
-      { test: /\.js$/, loader: "source-map-loader", exclude: [ helpers.root('node_modules/rxjs') ] }
+      {
+        test: /\.js$/, loader: 'source-map-loader', exclude: [
+              // these packages have problems with their sourcemaps
+              helpers.root('node_modules/rxjs'),
+              helpers.root('node_modules/@angular2-material')
+            ]
+      }
     ],
     loaders: [
       // Support Angular 2 async routes via .async.ts
       { test: /\.async\.ts$/, loaders: ['es6-promise-loader', 'ts-loader'], exclude: [ /\.(spec|e2e)\.ts$/ ] },
 
       // Support for .ts files.
-      { test: /\.ts$/, loader: 'ts-loader', exclude: [ /\.(spec|e2e|async)\.ts$/ ] },
+      {test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [/\.(spec|e2e)\.ts$/]},
 
       // Support for *.json files.
       { test: /\.json$/,  loader: 'json-loader' },
@@ -67,19 +79,20 @@ module.exports = {
   },
 
   plugins: [
+    new ForkCheckerPlugin(),
+
     new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'polyfills', filename: 'polyfills.bundle.js', minChunks: Infinity }),
+
+    new webpack.optimize.CommonsChunkPlugin({name: ['main', 'vendor', 'polyfills'], minChunks: Infinity}),
+
     // static assets
     new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
+
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/index.html' }),
-    // replace
-    new webpack.DefinePlugin({
-      'process.env': {
-        'ENV': JSON.stringify(metadata.ENV),
-        'NODE_ENV': JSON.stringify(metadata.ENV)
-      }
-    })
+    new HtmlWebpackPlugin({template: 'src/index.html', chunksSortMode: 'none'}),
+
+    // Environment helpers
+    new webpack.DefinePlugin({'ENV': JSON.stringify(METADATA.ENV), 'HMR': HMR})
   ],
 
   sassLoader: {
@@ -94,14 +107,25 @@ module.exports = {
     failOnHint: false,
     resourcePath: 'src'
   },
+
   // our Webpack Development Server config
   devServer: {
-    port: metadata.port,
-    host: metadata.host,
-    // contentBase: 'src/',
+    port: METADATA.port,
+    host: METADATA.host,
     historyApiFallback: true,
-    watchOptions: { aggregateTimeout: 300, poll: 1000 }
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
   },
-  // we need this due to problems with es6-shim
-  node: { global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false }
+
+  // Include polyfills or mocks for various node stuff
+  node: {
+    global: 'window',
+    process: true,
+    crypto: 'empty',
+    module: false,
+    clearImmediate: false,
+    setImmediate: false
+  }
 };
