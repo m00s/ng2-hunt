@@ -2,31 +2,27 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noEmitHelpers": false,
     "sourceMap": true
   },
-  "files": [
-    "src/app/app.ts",
-    "src/app/services/hunter.ts",
-    "src/app/services/session.ts",
-    "src/app/services/token.ts",
-    "src/app/components/categories/categories.ts",
-    "src/app/components/navbar/navbar.ts",
-    "src/app/components/dashboard/dashboard.ts",
-    "src/app/components/post/post.ts",
-    "src/app/commons/loading-spinner/loadingSpinner.ts",
-    "src/main.ts"
+  "exclude": [
+    "node_modules",
+    "typings/main.d.ts",
+    "typings/main"
   ],
   "filesGlob": [
     "./src/**/*.ts",
     "./test/**/*.ts",
     "!./node_modules/**/*.ts",
-    "typings/main.d.ts"
+    "src/custom-typings.d.ts",
+    "typings/browser.d.ts"
   ],
+  "awesomeTypescriptLoaderOptions": {
+    "resolveGlobs": true,
+    "forkChecker": true
+  },
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": true }
+  "atom": { "rewriteTsconfig": false }
 }
