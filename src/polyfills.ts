@@ -1,139 +1,122 @@
-// Polyfills
-import 'es6-shim';
-// (these modules are what are in 'angular2/bundles/angular2-polyfills' so don't use that here)
-import 'es6-promise';
 
-if ('production' === process.env.ENV) {
-    // In production Reflect with es7-reflect-metadata/reflect-metadata is added
+// Prefer CoreJS over the polyfills above
+import 'core-js';
+// import 'zone.js/lib/browser/browser'; //  beta.10 and beta.11 problem
+// see workaround below
+if ('production' === ENV) {
+  // Production
 
-    // Zone.js
-    require('zone.js/dist/zone-microtask.min');
-
-    // RxJS
-    // In production manually include the operators you use
-    require('rxjs/add/operator/map');
 
 } else {
-    // Reflect Polyfill
-    require('es7-reflect-metadata/src/global/browser');
-    // In production Reflect with es7-reflect-metadata/reflect-metadata is added
+  // Development
 
-    // by webpack.prod.config ProvidePlugin
-    Error['stackTraceLimit'] = Infinity;
-    require('zone.js/dist/zone-microtask');
-    require('zone.js/dist/long-stack-trace-zone');
+  Error.stackTraceLimit = Infinity;
 
-    // RxJS
-    // In development we are including every operator
-
-    // Observable Operators
-    require('rxjs/add/operator/combineLatest-static');
-    require('rxjs/add/operator/concat-static');
-    require('rxjs/add/operator/merge-static');
-    require('rxjs/add/observable/bindCallback');
-    require('rxjs/add/observable/defer');
-    require('rxjs/add/observable/empty');
-    require('rxjs/add/observable/forkJoin');
-    require('rxjs/add/observable/from');
-    require('rxjs/add/observable/fromArray');
-    require('rxjs/add/observable/fromEvent');
-    require('rxjs/add/observable/fromEventPattern');
-    require('rxjs/add/observable/fromPromise');
-    require('rxjs/add/observable/interval');
-    require('rxjs/add/observable/never');
-    require('rxjs/add/observable/range');
-    require('rxjs/add/observable/throw');
-    require('rxjs/add/observable/timer');
-    require('rxjs/add/operator/zip-static');
-
-    // Operators
-    require('rxjs/add/operator/buffer');
-    require('rxjs/add/operator/bufferCount');
-    require('rxjs/add/operator/bufferTime');
-    require('rxjs/add/operator/bufferToggle');
-    require('rxjs/add/operator/bufferWhen');
-    require('rxjs/add/operator/catch');
-    require('rxjs/add/operator/combineAll');
-    require('rxjs/add/operator/combineLatest');
-    require('rxjs/add/operator/concat');
-    require('rxjs/add/operator/concatAll');
-    require('rxjs/add/operator/concatMap');
-    require('rxjs/add/operator/concatMapTo');
-    require('rxjs/add/operator/count');
-    require('rxjs/add/operator/dematerialize');
-    require('rxjs/add/operator/debounce');
-    require('rxjs/add/operator/debounceTime');
-    require('rxjs/add/operator/defaultIfEmpty');
-    require('rxjs/add/operator/delay');
-    require('rxjs/add/operator/distinctUntilChanged');
-    require('rxjs/add/operator/distinctUntilKeyChanged');
-    require('rxjs/add/operator/do');
-    require('rxjs/add/operator/elementAt');
-    require('rxjs/add/operator/exhaust');
-    require('rxjs/add/operator/exhaustMap');
-    require('rxjs/add/operator/expand');
-    require('rxjs/add/operator/filter');
-    require('rxjs/add/operator/find');
-    require('rxjs/add/operator/findIndex');
-    require('rxjs/add/operator/finally');
-    require('rxjs/add/operator/first');
-    require('rxjs/add/operator/groupBy');
-    require('rxjs/add/operator/ignoreElements');
-    require('rxjs/add/operator/inspect');
-    require('rxjs/add/operator/inspectTime');
-    require('rxjs/add/operator/isEmpty');
-    require('rxjs/add/operator/every');
-    require('rxjs/add/operator/last');
-    require('rxjs/add/operator/map');
-    require('rxjs/add/operator/mapTo');
-    require('rxjs/add/operator/materialize');
-    require('rxjs/add/operator/max');
-    require('rxjs/add/operator/merge');
-    require('rxjs/add/operator/mergeAll');
-    require('rxjs/add/operator/mergeMap');
-    require('rxjs/add/operator/mergeMapTo');
-    require('rxjs/add/operator/mergeScan');
-    require('rxjs/add/operator/min');
-    require('rxjs/add/operator/multicast');
-    require('rxjs/add/operator/observeOn');
-    require('rxjs/add/operator/partition');
-    require('rxjs/add/operator/publish');
-    require('rxjs/add/operator/publishBehavior');
-    require('rxjs/add/operator/publishReplay');
-    require('rxjs/add/operator/publishLast');
-    require('rxjs/add/operator/reduce');
-    require('rxjs/add/operator/repeat');
-    require('rxjs/add/operator/retry');
-    require('rxjs/add/operator/retryWhen');
-    require('rxjs/add/operator/sample');
-    require('rxjs/add/operator/sampleTime');
-    require('rxjs/add/operator/scan');
-    require('rxjs/add/operator/share');
-    require('rxjs/add/operator/single');
-    require('rxjs/add/operator/skip');
-    require('rxjs/add/operator/skipUntil');
-    require('rxjs/add/operator/skipWhile');
-    require('rxjs/add/operator/startWith');
-    require('rxjs/add/operator/subscribeOn');
-    require('rxjs/add/operator/switch');
-    require('rxjs/add/operator/switchMap');
-    require('rxjs/add/operator/switchMapTo');
-    require('rxjs/add/operator/take');
-    require('rxjs/add/operator/takeUntil');
-    require('rxjs/add/operator/takeWhile');
-    require('rxjs/add/operator/throttle');
-    require('rxjs/add/operator/throttleTime');
-    require('rxjs/add/operator/timeInterval');
-    require('rxjs/add/operator/timeout');
-    require('rxjs/add/operator/timeoutWith');
-    require('rxjs/add/operator/toArray');
-    require('rxjs/add/operator/toPromise');
-    require('rxjs/add/operator/window');
-    require('rxjs/add/operator/windowCount');
-    require('rxjs/add/operator/windowTime');
-    require('rxjs/add/operator/windowToggle');
-    require('rxjs/add/operator/windowWhen');
-    require('rxjs/add/operator/withLatestFrom');
-    require('rxjs/add/operator/zip');
-    require('rxjs/add/operator/zipAll');
 }
+
+
+// ZONE.js workaround
+
+/* tslint:disable */
+
+require('zone.js/lib/zone');
+import {eventTargetPatch} from 'zone.js/lib/browser/event-target';
+import {propertyPatch} from 'zone.js/lib/browser/define-property';
+import {registerElementPatch} from 'zone.js/lib/browser/register-element';
+import {propertyDescriptorPatch} from 'zone.js/lib/browser/property-descriptor';
+import {patchMethod, patchPrototype, patchClass} from "zone.js/lib/browser/utils";
+
+const set = 'set';
+const clear = 'clear';
+const blockingMethods = ['alert', 'prompt', 'confirm'];
+
+patchTimer(global, set, clear, 'Timeout');
+patchTimer(global, set, clear, 'Interval');
+patchTimer(global, set, clear, 'Immediate');
+patchTimer(global, 'request', 'cancelMacroTask', 'AnimationFrame');
+patchTimer(global, 'mozRequest', 'mozCancel', 'AnimationFrame');
+patchTimer(global, 'webkitRequest', 'webkitCancel', 'AnimationFrame')
+
+for (var i = 0; i < blockingMethods.length; i++) {
+  var name = blockingMethods[i];
+  patchMethod(global, name, (delegate, symbol, name) => {
+    return function (s:any, args: any[]) {
+      return Zone.current.run(delegate, global, args, name)
+    }
+  });
+}
+
+eventTargetPatch(global);
+propertyDescriptorPatch(global);
+patchClass('MutationObserver');
+patchClass('WebKitMutationObserver');
+patchClass('FileReader');
+propertyPatch();
+registerElementPatch(global);
+
+/// GEO_LOCATION
+if (global['navigator'] && global['navigator'].geolocation) {
+  patchPrototype(global['navigator'].geolocation, [
+    'getCurrentPosition',
+    'watchPosition'
+  ]);
+}
+
+interface TimerOptions extends TaskData {
+  handleId: number,
+  args: any[]
+}
+
+function patchTimer(
+    window: any,
+    setName: string,
+    cancelName: string,
+    nameSuffix: string)
+{
+  setName += nameSuffix;
+  cancelName += nameSuffix;
+
+  function scheduleTask(task: Task) {
+    var data = <TimerOptions>task.data;
+    data.args[0] = task.invoke;
+    data.handleId = setNative.apply(window, data.args);
+    return task;
+  }
+
+  function clearTask(task: Task) {
+    return clearNative((<TimerOptions>task.data).handleId);
+  }
+
+  var setNative = patchMethod(
+    window,
+    setName,
+    (delegate: Function) => function(self: any, args: any[]) {
+    if (typeof args[0] === 'function') {
+      var zone = Zone.current;
+      var options: TimerOptions = {
+        handleId: null,
+        isPeriodic: nameSuffix == 'Interval',
+        delay: (nameSuffix == 'Timeout' || nameSuffix == 'Interval') ? args[1] || 0 : null,
+        args: args
+      };
+      return zone.scheduleMacroTask(setName, args[0], options, scheduleTask, clearTask);
+    } else {
+      // cause an error by calling it directly.
+      return delegate.apply(window, args);
+    }
+  });
+
+  var clearNative = patchMethod(window, cancelName, (delegate: Function) => function(self: any, args: any[]) {
+    var task: Task = args[0];
+    if (task && typeof task.type == 'string') {
+      task.zone.cancelTask(task);
+    } else {
+      // cause an error by calling it directly.
+      delegate.apply(window, args);
+    }
+  });
+}
+
+require('zone.js/dist/long-stack-trace-zone');
+
+/* tslint:enable */
