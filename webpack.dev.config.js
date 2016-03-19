@@ -1,6 +1,7 @@
 
 var webpack = require('webpack');
 var helpers = require('./helpers');
+var path = require('path');
 
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -22,7 +23,7 @@ const METADATA = {
  */
 module.exports = {
   // static data for index.html
-  metadata: metadata,
+  metadata: METADATA,
   // for faster builds use 'eval'
   devtool: 'source-map',
   debug: true,
@@ -31,8 +32,8 @@ module.exports = {
   // our angular app
   entry: {
     'polyfills': './src/polyfills.ts',
-    'main': './src/main.ts'
-    'vendor': './src/vendor.ts',
+    'main': './src/main.browser.ts',
+    'vendor': './src/vendor.ts'
   },
 
   // Config for our build files
