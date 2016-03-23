@@ -10,7 +10,7 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
+  title: 'Angular2 Product Hunt',
   baseUrl: '/',
   host: 'localhost',
   port: 3000,
@@ -24,16 +24,19 @@ const METADATA = {
 module.exports = {
   // static data for index.html
   metadata: METADATA,
-  // for faster builds use 'eval'
-  devtool: 'source-map',
   debug: true,
   devtool: 'cheap-module-eval-source-map',
 
   // our angular app
   entry: {
     'polyfills': './src/polyfills.ts',
-    'main': './src/main.browser.ts',
-    'vendor': './src/vendor.ts'
+    'vendor': './src/vendor.ts',
+    'main': './src/main.browser.ts'
+  },
+
+  resolve: {
+    extensions: ['','.ts','.js'],
+    root: helpers.root('src')
   },
 
   // Config for our build files
@@ -42,10 +45,6 @@ module.exports = {
     filename: '[name].bundle.js',
     sourceMapFilename: '[name].map',
     chunkFilename: '[id].chunk.js'
-  },
-
-  resolve: {
-    extensions: ['','.ts','.js']
   },
 
   module: {
@@ -59,9 +58,6 @@ module.exports = {
       }
     ],
     loaders: [
-      // Support Angular 2 async routes via .async.ts
-      { test: /\.async\.ts$/, loaders: ['es6-promise-loader', 'ts-loader'], exclude: [ /\.(spec|e2e)\.ts$/ ] },
-
       // Support for .ts files.
       {test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [/\.(spec|e2e)\.ts$/]},
 

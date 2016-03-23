@@ -1,24 +1,27 @@
+///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
 
 import {bootstrap} from 'angular2/platform/browser';
 import {provideInitialState, hotModuleReplacement} from 'angular2-hmr';
 
-/*
-* App Component
-* our top level component that holds all of our components
-*/
-import {App} from './app/app';
+import {DIRECTIVES, PIPES, PROVIDERS} from './platform/browser';
+import {ENV_PROVIDERS} from './platform/environment';
 
 /*
- * Bootstrap our Angular app with a top level component `App` and inject
+* MainComponent Component
+* our top level component that holds all of our components
+*/
+import {MainComponent} from './app/app';
+
+/*
+ * Bootstrap our Angular app with a top level component `MainComponent` and inject
  * our Services and Providers into Angular's dependency injection
  */
 export function main(initialState = {}) {
   let APP_PROVIDERS = [
-    provideInitialState(initialState),
-    AppState
+    provideInitialState(initialState)
   ];
 
-  return bootstrap(App, [
+  return bootstrap(MainComponent, [
     ...ENV_PROVIDERS,
     ...PROVIDERS,
     ...DIRECTIVES,
