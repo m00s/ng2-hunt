@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import {Directive, Component, View, ElementRef, Output, EventEmitter} from 'angular2/core';
+import {Directive, Component, ElementRef, Output, EventEmitter} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 
 /*
@@ -51,4 +51,3 @@ export class Navbar {
     this.refresh.next(null);
   }
 }
-
