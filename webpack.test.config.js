@@ -3,86 +3,68 @@ var helpers = require('./helpers');
 // Webpack Plugins
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin  = require('webpack/lib/DefinePlugin');
-var ENV = process.env.ENV = process.env.NODE_ENV = 'test';
+
+const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 module.exports = helpers.validate({
+
+  devtool: 'source-map',
   resolve: {
-    extensions: ['', '.ts','.js']
+    extensions: ['', '.ts','.js'],
+    root: helpers.root('src'),
   },
-  devtool: 'inline-source-map',
   module: {
     preLoaders: [
-      {
-        test: /\.ts$/,
-        loader: 'tslint-loader',
-        exclude: [
-          helpers.root('node_modules')
-        ]
-      },
-      {
-        test: /\.js$/,
-        loader: "source-map-loader",
-        exclude: [
-          helpers.root('node_modules/rxjs')
-        ]
-      }
+      {test: /\.ts$/, loader: 'tslint-loader', exclude: [helpers.root('node_modules')]},
+      {test: /\.js$/, loader: "source-map-loader", exclude: [
+        // these packages have problems with their sourcemaps
+        helpers.root('node_modules/rxjs'),
+        helpers.root('node_modules/@angular2-material')
+      ]}
     ],
     loaders: [
       {
         test: /\.ts$/,
-        loader: 'ts-loader',
+        loader: 'awesome-typescript-loader',
         query: {
           "compilerOptions": {
-            "noEmitHelpers": true,
-            "removeComments": true,
+
+            // Remove TypeScript helpers to be injected
+            // below by DefinePlugin
+            "removeComments": true
+
           }
         },
-        exclude: [ /\.e2e\.ts$/ ]
+        exclude: [/\.e2e\.ts$/]
       },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.css$/,  loader: 'raw-loader' }
+      { test: /\.json$/, loader: 'json-loader', exclude: [helpers.root('src/index.html')]},
+      { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
+      { test: /\.css$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]}
     ],
     postLoaders: [
       // instrument only testing sources with Istanbul
       {
-        test: /\.(js|ts)$/,
+        test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
         include: helpers.root('src'),
-        loader: 'istanbul-instrumenter-loader',
         exclude: [
           /\.(e2e|spec)\.ts$/,
           /node_modules/
         ]
       }
-    ],
-    noParse: [
-      helpers.root('zone.js/dist'),
-      helpers.root('angular2/bundles')
     ]
   },
-  stats: { colors: true, reasons: true },
-  debug: false,
   plugins: [
-    new DefinePlugin({
-      // Environment helpers
-      'process.env': {
-        'ENV': JSON.stringify(ENV),
-        'NODE_ENV': JSON.stringify(ENV)
-      }
-    }),
-    new ProvidePlugin({
-      // TypeScript helpers
-      '__metadata': 'ts-helper/metadata',
-      '__decorate': 'ts-helper/decorate',
-      '__awaiter': 'ts-helper/awaiter',
-      '__extends': 'ts-helper/extends',
-      '__param': 'ts-helper/param',
-    })
+    new DefinePlugin({'ENV': JSON.stringify(ENV), 'HMR': false})
   ],
-    // we need this due to problems with es6-shim
+  tslint: {
+    emitErrors: false,
+    failOnHint: false,
+    resourcePath: 'src'
+  },
+  // we need this due to problems with es6-shim
   node: {
     global: 'window',
-    progress: false,
+    process: false,
     crypto: 'empty',
     module: false,
     clearImmediate: false,

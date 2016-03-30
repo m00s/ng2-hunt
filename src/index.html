@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <title> ng2 - Product Hunt </title>
+    <title> Angular 2 Product Hunt </title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Angular2 Hunter">
-    <link rel="shortcut icon" href="assets/icon/favicon.ico">
+    <meta name="description" content="<%= webpackConfig.metadata.title %>">
 
     <!-- base url -->
-    <base href="<%= webpackConfig.metadata.baseUrl %>">
+    <base href="/">
 
   </head>
 
@@ -19,10 +18,8 @@
       Loading...
     </ngHunt>
 
-    <% if (webpackConfig.metadata.ENV === 'development') { %>
     <!-- Webpack Dev Server reload -->
-    <script src="http://<%= webpackConfig.metadata.host %>:<%= webpackConfig.metadata.port %>/webpack-dev-server.js"></script>
-    <% } %>
+    <script src="/webpack-dev-server.js"></script>
 
   </body>
 </html>
