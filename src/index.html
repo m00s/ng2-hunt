@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <title><%= webpackConfig.metadata.title %></title>
+    <title> Angular 2 Product Hunt </title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <meta name="description" content="<%= webpackConfig.metadata.title %>">
 
     <!-- base url -->
-    <base href="<%= webpackConfig.metadata.baseUrl %>">
+    <base href="/">
 
   </head>
 
@@ -18,9 +18,8 @@
       Loading...
     </ngHunt>
 
-    <% if (webpackConfig.metadata.ENV === 'development') { %>
-    <script src="http://<%= webpackConfig.metadata.host %>:<%= webpackConfig.metadata.port %>/webpack-dev-server.js"></script>
-    <% } %>
+    <!-- Webpack Dev Server reload -->
+    <script src="/webpack-dev-server.js"></script>
 
   </body>
 </html>

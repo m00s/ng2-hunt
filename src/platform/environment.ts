@@ -1,4 +1,4 @@
-
+// Angular 2 browser
 import {
   ELEMENT_PROBE_PROVIDERS,
   ELEMENT_PROBE_PROVIDERS_PROD_MODE
@@ -27,6 +27,7 @@ if ('production' === ENV) {
   ];
 
 }
+
 
 export const ENV_PROVIDERS = [
   ...PROVIDERS

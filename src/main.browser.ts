@@ -1,32 +1,31 @@
-///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
-
+/*
+ * Providers provided by Angular
+ */
 import {bootstrap} from 'angular2/platform/browser';
-import {provideInitialState, hotModuleReplacement} from 'angular2-hmr';
-
+/*
+* Platform and Environment
+* our providers/directives/pipes
+*/
 import {DIRECTIVES, PIPES, PROVIDERS} from './platform/browser';
 import {ENV_PROVIDERS} from './platform/environment';
 
 /*
-* MainComponent Component
+* App Component
 * our top level component that holds all of our components
 */
 import {MainComponent} from './app/app';
 
 /*
- * Bootstrap our Angular app with a top level component `MainComponent` and inject
+ * Bootstrap our Angular app with a top level component `App` and inject
  * our Services and Providers into Angular's dependency injection
  */
-export function main(initialState = {}) {
-  let APP_PROVIDERS = [
-    provideInitialState(initialState)
-  ];
+export function main(initialHmrState?: any): Promise<any> {
 
   return bootstrap(MainComponent, [
     ...ENV_PROVIDERS,
     ...PROVIDERS,
     ...DIRECTIVES,
-    ...PIPES,
-    ...APP_PROVIDERS,
+    ...PIPES
   ])
   .catch(err => console.error(err));
 
@@ -50,7 +49,8 @@ export function main(initialState = {}) {
  */
 if ('development' === ENV && HMR === true) {
   // activate hot module reload
-  hotModuleReplacement(main, module);
+  let ngHmr = require('angular2-hmr');
+  ngHmr.hotModuleReplacement(main, module);
 } else {
   // bootstrap when documetn is ready
   document.addEventListener('DOMContentLoaded', () => main());

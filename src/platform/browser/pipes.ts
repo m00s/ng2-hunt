@@ -1,3 +1,4 @@
+
 import {provide, PLATFORM_PIPES} from 'angular2/core';
 
 // application_pipes: pipes that are global through out the application
