@@ -2,7 +2,7 @@ import {
     Component,
     Input,
     EventEmitter
-} from 'angular2/core';
+} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 
 let spinnerTemplate = require('./loadingSpinner.html');

@@ -1,9 +1,9 @@
 /*
  * Angular 2 decorators and services
  */
-import {Directive, Component, ElementRef, ChangeDetectionStrategy} from 'angular2/core';
+import {Directive, Component, ElementRef, ChangeDetectionStrategy} from '@angular/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
-import {Http, Headers} from 'angular2/http';
+import {Http, Headers} from '@angular/http';
 
 /*
  * App services

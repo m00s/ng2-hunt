@@ -1,5 +1,5 @@
 
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {RouteParams, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Hunter} from '../../services/hunter';

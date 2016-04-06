@@ -1,6 +1,6 @@
-import {Injectable, Inject} from 'angular2/core';
+import {Injectable, Inject} from '@angular/core';
 import {PHKEYS} from '../../platform/environment';
-import {Http, Headers, RequestOptionsArgs, Response} from 'angular2/http';
+import {Http, Headers, RequestOptionsArgs, Response} from '@angular/http';
 import {Token} from './token';
 
 const API_HOST = 'https://api.producthunt.com';

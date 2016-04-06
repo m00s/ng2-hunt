@@ -1,13 +1,13 @@
 /*
  * Angular 2 decorators and services
  */
-import {Directive, Component, ElementRef, Output, EventEmitter} from 'angular2/core';
-import {Http, Headers} from 'angular2/http';
+import {Directive, Component, ElementRef, Output, EventEmitter} from '@angular/core';
+import {Http, Headers} from '@angular/http';
 
 /*
  * Angular Directives
  */
-import {FORM_PROVIDERS} from 'angular2/common';
+import {FORM_PROVIDERS} from '@angular/common';
 
 /*
  * App services
