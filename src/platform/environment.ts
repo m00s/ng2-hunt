@@ -1,8 +1,3 @@
-// Angular 2 browser
-import {
-  ELEMENT_PROBE_PROVIDERS,
-  ELEMENT_PROBE_PROVIDERS_PROD_MODE
-} from 'angular2/platform/browser';
 
 // Angular 2
 import {enableProdMode, provide, OpaqueToken} from 'angular2/core';
@@ -17,15 +12,13 @@ if ('production' === ENV) {
   enableProdMode();
 
   PROVIDERS = [
-    ...PROVIDERS,
-    ELEMENT_PROBE_PROVIDERS_PROD_MODE
+    ...PROVIDERS
   ];
 
 } else {
   // Development
   PROVIDERS = [
-    ...PROVIDERS,
-    ELEMENT_PROBE_PROVIDERS
+    ...PROVIDERS
   ];
 
 }
