@@ -1,6 +1,6 @@
 {
   "name": "ng2-hunt",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "An angular 2 sample application to see hot products from Product Hunt",
   "scripts": {
     "rimraf": "rimraf",
@@ -58,21 +58,23 @@
   },
   "homepage": "https://github.com/m00s/ng2-hunt",
   "dependencies": {
-    "@angular2-material/button": "^2.0.0-alpha.1",
-    "@angular2-material/card": "^2.0.0-alpha.1",
-    "@angular2-material/checkbox": "^2.0.0-alpha.1",
-    "@angular2-material/core": "^2.0.0-alpha.1",
-    "@angular2-material/progress-circle": "^2.0.0-alpha.1",
-    "@angular2-material/radio": "^2.0.0-alpha.1",
-    "@angular2-material/sidenav": "^2.0.0-alpha.1",
-    "@angular2-material/toolbar": "^2.0.0-alpha.1",
-    "angular2": "2.0.0-beta.13",
+    "@angular2-material/button": "2.0.0-alpha.2",
+    "@angular2-material/card": "2.0.0-alpha.2",
+    "@angular2-material/checkbox": "2.0.0-alpha.2",
+    "@angular2-material/core": "2.0.0-alpha.2",
+    "@angular2-material/input": "2.0.0-alpha.2",
+    "@angular2-material/list": "2.0.0-alpha.2",
+    "@angular2-material/progress-circle": "2.0.0-alpha.2",
+    "@angular2-material/radio": "2.0.0-alpha.2",
+    "@angular2-material/sidenav": "2.0.0-alpha.2",
+    "@angular2-material/toolbar": "2.0.0-alpha.2",
+    "angular2": "2.0.0-beta.14",
     "core-js": "^2.1.5",
     "rxjs": "5.0.0-beta.4",
-    "zone.js": "0.6.6"
+    "zone.js": "0.6.10"
   },
   "devDependencies": {
-    "angular2-hmr": "~0.5.1",
+    "angular2-hmr": "~0.5.5",
     "awesome-typescript-loader": "~0.16.2",
     "compression-webpack-plugin": "^0.3.0",
     "copy-webpack-plugin": "^1.1.1",
