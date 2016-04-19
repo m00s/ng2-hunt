@@ -1,43 +1,28 @@
 
-var webpack = require('webpack');
-var helpers = require('./helpers');
-var path = require('path');
+const helpers = require('./helpers');
+const webpackMerge = require('webpack-merge'); // used to merge webpack configs
+const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
 
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+/**
+ * Webpack Plugins
+ */
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HMR = helpers.hasProcessFlag('hot');
-const METADATA = {
-  title: 'Angular2 Product Hunt',
-  baseUrl: '/',
+const METADATA = webpackMerge(commonConfig.metadata, {
   host: 'localhost',
   port: 3000,
   ENV: ENV,
   HMR: HMR
-};
+});
 
-/*
- * Config
- */
-module.exports = {
-  // static data for index.html
+
+module.exports = webpackMerge(commonConfig, {
+
   metadata: METADATA,
   debug: true,
   devtool: 'cheap-module-eval-source-map',
-
-  // our angular app
-  entry: {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'main': './src/main.browser.ts'
-  },
-
-  resolve: {
-    extensions: ['','.ts','.js'],
-    root: helpers.root('src')
-  },
 
   // Config for our build files
   output: {
@@ -47,49 +32,16 @@ module.exports = {
     chunkFilename: '[id].chunk.js'
   },
 
-  module: {
-    preLoaders: [
-      {
-        test: /\.js$/, loader: 'source-map-loader', exclude: [
-              // these packages have problems with their sourcemaps
-              helpers.root('node_modules/rxjs'),
-              helpers.root('node_modules/@angular2-material')
-            ]
-      }
-    ],
-    loaders: [
-      // Support for .ts files.
-      {test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [/\.(spec|e2e)\.ts$/]},
-
-      // Support for *.json files.
-      { test: /\.json$/,  loader: 'json-loader' },
-
-      // Support for CSS as raw text
-      { test: /\.css$/,   loader: 'raw-loader' },
-
-      // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
-
-      // Support for SCSS
-      { test: /\.scss$/, include: [path.resolve(__dirname, 'src/assets/styles')], loader: 'style!css!!sass' }
-    ]
-  },
-
   plugins: [
-    new ForkCheckerPlugin(),
-
-    new webpack.optimize.OccurenceOrderPlugin(true),
-
-    new webpack.optimize.CommonsChunkPlugin({name: ['main', 'vendor', 'polyfills'], minChunks: Infinity}),
-
-    // static assets
-    new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
-
-    // generating html
-    new HtmlWebpackPlugin({template: 'src/index.html', chunksSortMode: 'none'}),
-
-    // Environment helpers
-    new webpack.DefinePlugin({'ENV': JSON.stringify(METADATA.ENV), 'HMR': HMR})
+    new DefinePlugin({
+      'ENV': JSON.stringify(METADATA.ENV),
+      'HMR': METADATA.HMR,
+      'process.env': {
+        'ENV': JSON.stringify(METADATA.ENV),
+        'NODE_ENV': JSON.stringify(METADATA.ENV),
+        'HMR': METADATA.HMR,
+      }
+    })
   ],
 
   sassLoader: {
@@ -113,14 +65,15 @@ module.exports = {
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
-    }
+    },
+    outputPath: helpers.root('dist')
   },
 
   // Include polyfills or mocks for various node stuff
   node: {
     global: 'window',
-    process: true,
     crypto: 'empty',
+    process: true,
     module: false,
     clearImmediate: false,
     setImmediate: false
