@@ -16,7 +16,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
  * Webpack Constants
  */
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
+  title: 'Angular2 Hunt',
   baseUrl: '/'
 };
 
@@ -169,9 +169,10 @@ module.exports = {
         exclude: [helpers.root('src/index.html')]
       },
 
+      // Support for SCSS
       {
         test: /\.scss$/,
-        include: [path.resolve(__dirname, 'src/assets/styles')],
+        include: [helpers.root('src/assets/styles')],
         loader: 'style!css!!sass'
       }
 
