@@ -4,9 +4,7 @@ import {
   RouteConfig,
   ROUTER_DIRECTIVES,
   ROUTER_PROVIDERS,
-  RouterOutlet,
-  LocationStrategy,
-  HashLocationStrategy
+  RouterOutlet
 } from 'angular2/router';
 
 
@@ -28,8 +26,7 @@ import '../assets/styles/style.scss';
     ROUTER_PROVIDERS,
     Hunter,
     Session,
-    Token,
-    provide(LocationStrategy, {useClass: HashLocationStrategy})
+    Token
   ]
 })
 @RouteConfig([{
