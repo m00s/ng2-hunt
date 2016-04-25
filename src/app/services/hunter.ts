@@ -7,7 +7,8 @@ const API_HOST = 'https://api.producthunt.com';
 const POSTS_ROUTE = '/v1/posts';
 const CATEGORIES_ROUTE = '/v1/categories';
 
-@Injectable() export class Hunter {
+@Injectable()
+export class Hunter {
   _token: Token;
 
   constructor(public http: Http, private token: Token) {

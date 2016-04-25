@@ -6,7 +6,8 @@ const API_HOST = 'https://api.producthunt.com';
 const TOKEN_ROUTE = '/v1/oauth/token';
 const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
 
-@Injectable() export class Session {
+@Injectable()
+export class Session {
 
   public isStarted: boolean = false;
   private _token: Token;
@@ -38,10 +39,10 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
 
   authorize(isPublic) {
     if (isPublic) {
-      console.log('Authorizing Client');
+      console.log('Authorizing - Client Credentials');
       this.CCFlow();
     } else {
-      console.log('Authorizing user');
+      console.log('Authorizing - User Authentication');
       this.UAFlow();
     }
   }
@@ -68,7 +69,6 @@ const AUTHORIZATION_ROUTE = '/v1/oauth/authorize';
     var JSON_HEADERS = new Headers();
 
     JSON_HEADERS.append('Accept', 'application/json');
-    //JSON_HEADERS.append('Content-Type', 'application/json');
 
     const BODY = JSON.stringify({
       'client_id' : 'e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3',
