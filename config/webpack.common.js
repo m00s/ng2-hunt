@@ -169,7 +169,10 @@ module.exports = {
         exclude: [helpers.root('src/index.html')]
       },
 
-      // Support for SCSS
+      /* Sass loader for *.scss
+       *
+       * See https://github.com/jtangelder/sass-loader
+       */
       {
         test: /\.scss$/,
         include: [helpers.root('src/assets/styles')],
