@@ -1,5 +1,3 @@
-# @AngularClass
-
 # Logs
 logs
 *.log
@@ -46,6 +44,8 @@ Thumbs.db
 __build__/**
 .webpack.json
 
-
 # IDE #
 .idea/
+
+# Sensitive data #
+*.secret.json

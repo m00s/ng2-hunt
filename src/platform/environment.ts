@@ -5,7 +5,9 @@ import {
 } from 'angular2/platform/browser';
 
 // Angular 2
-import {enableProdMode} from 'angular2/core';
+import {enableProdMode, provide, OpaqueToken} from 'angular2/core';
+
+export const PHKEYS = new OpaqueToken('app.config');
 
 // Environment Providers
 let PROVIDERS = [];
@@ -28,7 +30,7 @@ if ('production' === ENV) {
 
 }
 
-
 export const ENV_PROVIDERS = [
-  ...PROVIDERS
+  ...PROVIDERS,
+  provide(PHKEYS, { useValue: require('../../keys.secret.json') })
 ];
