@@ -1,5 +1,5 @@
 <ul class="toolbar">
-    <li *ngFor="#c of categories | async" class="category clickable"
+    <li *ngFor="let c of categories | async" class="category clickable"
         [ngClass]="{ active: activeCategory === c, clickable: activeCategory !== c }"
         (click)="onFilter($event, c)">
       <span> {{ c.name }} </span>

@@ -4,14 +4,14 @@
   </header>
 
   <div class="main-container">
-      
+
     <navbar (refresh)="fetchPosts()"></navbar>
 
     <categories [isAuthenticated]="isAuthenticated" (filterBy)="filterPosts($event, c)"></categories>
 
     <section class="posts">
       <loadingSpinner [showAsync]="posts"></loadingSpinner>
-      <div *ngFor="#p of posts | async" class="post">
+      <div *ngFor="let p of posts | async" class="post">
         <div class="tile-header">
           <h3> {{ p.name }} </h3>
         </div>

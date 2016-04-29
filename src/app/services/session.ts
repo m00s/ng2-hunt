@@ -1,4 +1,5 @@
-import {Injectable} from 'angular2/core';
+import {Injectable, Inject} from 'angular2/core';
+import {PHKEYS} from '../../platform/environment';
 import {Http, Headers, RequestOptionsArgs, Response} from 'angular2/http';
 import {Token} from './token';
 
@@ -12,7 +13,7 @@ export class Session {
   public isStarted: boolean = false;
   private _token: Token;
 
-  constructor(public http: Http, public token: Token) {
+  constructor(public http: Http, public token: Token, @Inject(PHKEYS) private _KEYS) {
     this._token = token;
 
     const t = this._token.get() || this.getURLParam('code');
@@ -55,7 +56,7 @@ export class Session {
 
   UAFlow() {
     window.location.href = `${API_HOST}${AUTHORIZATION_ROUTE}` +
-    `?client_id=e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3&` +
+    `?client_id=${this._KEYS.apiKey}&` +
     `redirect_uri=http%3A%2F%2Flocalhost.com%3A3000&response_type=code&scope=public+private`;
   }
 
@@ -71,8 +72,8 @@ export class Session {
     JSON_HEADERS.append('Accept', 'application/json');
 
     const BODY = JSON.stringify({
-      'client_id' : 'e5969a47d2d1c5edeecca1d718d23c1d2efad8cf3f96049e1ce2bbd3843cebc3',
-      'client_secret' : '02bcd19bc72549a4ea87370ed08e3f946c9e631ecea16b3c331c470ebefabe3a',
+      'client_id' : this._KEYS.apiKey,
+      'client_secret' : this._KEYS.apiSecret,
       'grant_type' : 'client_credentials'
     });
 

@@ -1,16 +1,17 @@
-import {Injectable} from 'angular2/core';
+import {Injectable, Inject} from 'angular2/core';
+import {PHKEYS} from '../../platform/environment';
 
 @Injectable() export class Token {
   token: string;
   devMode: boolean = true;
 
-  constructor() {
+  constructor(@Inject(PHKEYS) private _KEYS) {
     this.token = localStorage.getItem('token');
   }
 
   get() {
     return this.devMode ?
-      'e547885fb029f64753913167564dee312dc60a20a408f290af5be9609b91c75b' : this.token;
+      this._KEYS.devToken : this.token;
   }
 
   set(t) {
