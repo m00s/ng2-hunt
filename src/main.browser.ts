@@ -1,7 +1,6 @@
-/*
- * Providers provided by Angular
- */
-import {bootstrap} from 'angular2/platform/browser';
+
+import {bootstrap} from '@angular/platform-browser-dynamic';
+
 /*
 * Platform and Environment
 * our providers/directives/pipes
@@ -14,7 +13,6 @@ import {ENV_PROVIDERS} from './platform/environment';
 * our top level component that holds all of our components
 */
 import {MainComponent} from './app/app';
-
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
@@ -31,7 +29,6 @@ export function main(initialHmrState?: any): Promise<any> {
   .catch(err => console.error(err));
 
 }
-
 
 /*
  * Hot Module Reload
