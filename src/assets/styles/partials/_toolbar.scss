@@ -5,6 +5,7 @@ ul.toolbar {
   margin: 0;
   padding: 0;
   text-align: center;
+  position: relative;
 
   li.category {
     display: inline-block;
@@ -37,4 +38,11 @@ ul.toolbar {
       border-bottom: 2px solid;
     }
   }
+  
+  li.live-search {
+    position: absolute;
+    right: 25px;
+    top: 1em;
+  }
+  
 }

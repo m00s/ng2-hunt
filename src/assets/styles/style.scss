@@ -46,9 +46,9 @@ html, body {
 
 .main-container .post {
   position: relative;
-  width: 15%;
-  height: 200px;
-  float: left;
+  display: inline-block;
+  width: 175px;
+  height: 175px;
   overflow: hidden;
   border: 2px solid $light-primary-color;
   text-align: center;
@@ -60,8 +60,9 @@ html, body {
   max-height: 200px;
 }
 
-.main-container section.posts {
-  display: block;
+.main-container div.posts {
+  display: inline-block;
+  width: 100%;
   text-align: center;
 }
 
