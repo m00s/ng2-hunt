@@ -7,18 +7,20 @@
 
     <navbar (refresh)="fetchPosts()"></navbar>
 
-    <categories [isAuthenticated]="isAuthenticated" (filterBy)="filterPosts($event, c)"></categories>
+    <categories [isAuthenticated]="isAuthenticated" (filterBy)="filterPosts($event)"></categories>
 
     <section class="posts">
-      <loadingSpinner [showAsync]="posts"></loadingSpinner>
-      <div *ngFor="let p of posts | async" class="post">
-        <div class="tile-header">
-          <h3> {{ p.name }} </h3>
-        </div>
-        <div class="tile-body" [style.backgroundImage]="'url(' + p.thumbnail.image_url + ')'">
-        </div>
-        <div class="tile-footer" (click)="gotoDetail(p.id)">
-          <button class="btn-link">Read more about this post</button>
+      <div class="posts">
+        <loadingSpinner [showAsync]="posts"></loadingSpinner>
+        <div *ngFor="let p of posts | async | search:searchPattern" class="post">
+          <div class="tile-header">
+            <h3> {{ p.name }} </h3>
+          </div>
+          <div class="tile-body" [style.backgroundImage]="'url(' + p.thumbnail.image_url + ')'">
+          </div>
+          <div class="tile-footer" (click)="gotoDetail(p.id)">
+            <button class="btn-link">Read more about this post</button>
+          </div>
         </div>
       </div>
     </section>

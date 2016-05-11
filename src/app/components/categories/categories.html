@@ -1,7 +1,11 @@
 <ul class="toolbar">
     <li *ngFor="let c of categories | async" class="category clickable"
         [ngClass]="{ active: activeCategory === c, clickable: activeCategory !== c }"
-        (click)="onFilter($event, c)">
+        (click)="onFilter($event, c, pattern.value)">
       <span> {{ c.name }} </span>
+    </li>
+    
+    <li class="live-search">
+        <input type="text" #pattern (keyup)="onFilter($event, activeCategory, pattern.value)"/>
     </li>
 </ul>

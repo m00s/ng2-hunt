@@ -34,9 +34,9 @@ export class Categories {
     this.categories = this._hunter.getCategories();
   }
 
-  onFilter(event, c) {
+  onFilter(event, c, p) {
     if (this.activeCategory !== c) {
-      this.filterBy.emit({category: c});
+      this.filterBy.emit({category: c, pattern: p});
       this.activeCategory = c;
     }
   }
