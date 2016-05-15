@@ -36,7 +36,7 @@ export class Dashboard {
   searchPattern: string;
   posts: Observable<Array<any>>;
 
-  constructor(public hunter: Hunter, public session: Session, private router: Router) {}
+  constructor(private _hunter: Hunter, public session: Session, private router: Router) {}
 
   ngOnInit () {
     this.isAuthenticated = this.session.isStarted;
@@ -46,7 +46,11 @@ export class Dashboard {
   }
 
   fetchPosts(category?) {
-    this.posts = this.hunter.getPosts(category);
+    this._hunter.getPosts(category)
+      .subscribe(
+        (_posts) => this.posts = _posts,
+        (err) => console.log(err)
+      );
   }
 
   filterPosts(event) {

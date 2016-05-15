@@ -11,8 +11,8 @@
 
     <section class="posts">
       <div class="posts">
-        <loadingSpinner [showAsync]="posts"></loadingSpinner>
-        <div *ngFor="let p of posts | async | search:searchPattern" class="post">
+        <!--<loadingSpinner [showAsync]="posts"></loadingSpinner>-->
+        <div *ngFor="let p of posts" class="post">
           <div class="tile-header">
             <h3> {{ p.name }} </h3>
           </div>
