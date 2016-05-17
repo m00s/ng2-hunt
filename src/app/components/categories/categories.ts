@@ -39,6 +39,8 @@ export class Categories {
       this.filterBy.emit({category: c, pattern: p});
       this.activeCategory = c;
     }
+    else {
+      this.filterBy.emit({category: null, pattern: p});
+    }
   }
 }
-

@@ -33,6 +33,7 @@ let postsTemplate = require('./dashboard.html');
 export class Dashboard {
 
   isAuthenticated: boolean = false;
+  isLoadingPost: boolean = false;
   searchPattern: string;
   posts: Observable<Array<any>>;
 
@@ -46,19 +47,23 @@ export class Dashboard {
   }
 
   fetchPosts(category?) {
+    this.isLoadingPost = true;
     this._hunter.getPosts(category)
       .subscribe(
-        (_posts) => this.posts = _posts,
+        (_posts) => {
+          this.posts = _posts;
+          this.isLoadingPost = false;
+        },
         (err) => console.log(err)
       );
   }
 
   filterPosts(event) {
-    if(event.pattern) {
+    if(event.pattern !== undefined && event.pattern !== this.searchPattern) {
       this.searchPattern = event.pattern;
     }
     else {
-      this.fetchPosts(event.category.slug);
+      this.fetchPosts(event.category ? event.category.slug : null);
     }
   }
 
