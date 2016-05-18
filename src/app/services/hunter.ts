@@ -22,7 +22,7 @@ export class Hunter {
   }
 
   getPosts(category?) {
-    var param = category ? `/all?search[category]=${category}` : '';
+    const param = category ? `/all?search[category]=${category}` : '';
     return this.http
       .get(`${API_HOST}${POSTS_ROUTE}${param}`, { headers: this.buildHeaders() })
       .map((res: Response) => res.json())
