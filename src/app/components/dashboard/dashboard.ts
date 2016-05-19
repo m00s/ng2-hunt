@@ -63,6 +63,7 @@ export class Dashboard {
       this.searchPattern = event.pattern;
     }
     else {
+      console.log('event.pattern:',event.pattern); 
       this.fetchPosts(event.category ? event.category.slug : null);
     }
   }

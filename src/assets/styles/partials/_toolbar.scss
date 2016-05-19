@@ -38,11 +38,16 @@ ul.toolbar {
       border-bottom: 2px solid;
     }
   }
-  
+
   li.live-search {
     position: absolute;
     right: 25px;
     top: 1em;
+    .live-search-input {
+      padding: 5px;
+      border-radius: 5px;
+    }
   }
-  
+
+
 }
