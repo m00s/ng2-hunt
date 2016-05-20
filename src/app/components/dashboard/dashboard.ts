@@ -58,13 +58,12 @@ export class Dashboard {
       );
   }
 
-  filterPosts(event) {
-    if(event.pattern !== undefined && event.pattern !== this.searchPattern) {
-      this.searchPattern = event.pattern;
+  filterPosts(evt) {
+    if(evt.category) {
+      this.fetchPosts(evt.category.slug);
     }
     else {
-      console.log('event.pattern:',event.pattern); 
-      this.fetchPosts(event.category ? event.category.slug : null);
+      this.searchPattern = evt.pattern;
     }
   }
 

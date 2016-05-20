@@ -36,12 +36,12 @@ export class Categories {
 
   onFilter(event, c, p) {
     if (this.activeCategory !== c) {
-      this.filterBy.emit({category: c, pattern: p});
+      this.filterBy.emit({ category: c, pattern: p });
       this.activeCategory = c;
     }
     else {
       if(p) {
-        this.filterBy.emit({category: null, pattern: p});
+        this.filterBy.emit({ pattern: p });
       }
     }
   }
