@@ -49,8 +49,8 @@ export class Session {
   }
 
   /*
-   *
    * Start a user authentication oAuth authorization
+   * [ref: https://api.producthunt.com/v1/docs/oauth_user_authentication/oauth_authorize_ask_for_access_grant_code_on_behalf_of_the_user]
    *
    */
 
@@ -61,20 +61,21 @@ export class Session {
   }
 
   /*
-  *
-  * Start a client credential oAuth authorization
-  *
-  */
+   * Start a client credential oAuth authorization
+   * [ref: https://api.producthunt.com/v1/docs/oauth_client_only_authentication/oauth_token_ask_for_client_level_token]
+   *
+   */
 
   CCFlow() {
     var JSON_HEADERS = new Headers();
 
     JSON_HEADERS.append('Accept', 'application/json');
+    JSON_HEADERS.append('Content-Type', 'application/json');
 
     const BODY = JSON.stringify({
-      'client_id' : this._KEYS.apiKey,
-      'client_secret' : this._KEYS.apiSecret,
-      'grant_type' : 'client_credentials'
+      "client_id" : this._KEYS.apiKey,
+      "client_secret" : this._KEYS.apiSecret,
+      "grant_type" : "client_credentials"
     });
 
     this.http
@@ -83,7 +84,7 @@ export class Session {
       .subscribe(
         data => this.serverData(data),
         err  => this.errorMessage(err)
-    );
+      );
   }
 
   serverData(data) {

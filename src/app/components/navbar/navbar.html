@@ -1,6 +1,6 @@
 <nav>
   <button class="ph-button" [disabled]="!isAuthenticated" (click)="fireRefresh()"> Refresh Product List </button>
-  <button class="ph-button" (click)="authenticate(true)" disabled> Client only</button>
+  <button class="ph-button" (click)="authenticate(true)"> Client only</button>
   <button class="ph-button" [disabled]="isAuthenticated" (click)="authenticate(false)"> User </button>
   <button class="ph-button" [disabled]="!isAuthenticated" (click)="logout()"> Logout </button>
 </nav>
